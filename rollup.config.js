@@ -14,5 +14,5 @@ export default {
     },
   ],
   plugins: [typescript(), terser()],
-  external: [],
+  external: ['@colorblender/converter'],
 };
