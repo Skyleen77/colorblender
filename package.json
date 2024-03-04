@@ -1,0 +1,53 @@
+{
+  "name": "colorblender",
+  "version": "1.0.0",
+  "description": "A powerful and fully typed color library.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Skyleen77/colorblender/core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Skyleen77/colorblender/core/issues"
+  },
+  "homepage": "https://github.com/Skyleen77/colorblender/core.git#README.md",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  },
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "start": "rollup -c -w --bundleConfigAsCjs",
+    "index": "nodemon dist/index.js",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "dev": "concurrently \"npm run start\" \"npm run test:watch\"",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "Skyleen",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.1.2",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "rollup": "^3.21.6",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "ts-jest": "^29.1.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.0.4"
+  }
+}
