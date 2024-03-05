@@ -1,6 +1,7 @@
 import type {
   CmykColor,
   HcgColor,
+  HexColor,
   HsiColor,
   HslColor,
   HsvColor,
@@ -22,27 +23,29 @@ export type XyzaColor = WithAlpha<XyzColor>;
 export type LabaColor = WithAlpha<LabColor>;
 export type LchaColor = WithAlpha<LchColor>;
 export type CmykaColor = WithAlpha<CmykColor>;
-export type HexaColor = string;
 
-export type AnyColor =
-  | HexaColor
+export type ColorWithoutAlpha =
   | RgbColor
-  | RgbaColor
   | HslColor
-  | HslaColor
   | HsvColor
-  | HsvaColor
   | HsiColor
-  | HsiaColor
   | HwbColor
-  | HwbaColor
   | HcgColor
-  | HcgaColor
   | XyzColor
-  | XyzaColor
   | LabColor
-  | LabaColor
   | LchColor
+  | CmykColor;
+
+export type ColorWithAlpha =
+  | RgbaColor
+  | HslaColor
+  | HsvaColor
+  | HsiaColor
+  | HwbaColor
+  | HcgaColor
+  | XyzaColor
+  | LabaColor
   | LchaColor
-  | CmykColor
   | CmykaColor;
+
+export type AnyColor = HexColor | ColorWithoutAlpha | ColorWithAlpha;

@@ -5,3 +5,8 @@ export * from './lighten';
 export * from './darken';
 export * from './luminosity';
 export * from './mix';
+export * from './saturate';
+export * from './desaturate';
+export * from './whiten';
+export * from './blacken';
+export * from './grayscale';
