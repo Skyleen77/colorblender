@@ -10,3 +10,4 @@ export * from './desaturate';
 export * from './whiten';
 export * from './blacken';
 export * from './grayscale';
+export * from './contrast';

@@ -17,6 +17,7 @@ import {
   anyToRgba,
   blacken,
   brightness,
+  contrast,
   darken,
   desaturate,
   grayscale,
@@ -100,7 +101,7 @@ export class Colorblender {
   public alpha(value?: number): Colorblender | number {
     if (typeof value === 'number')
       return colorblender({ ...this.internalRgb, a: value });
-    return round(this.internalAlpha, 3);
+    return round(this.internalAlpha, 2);
   }
 
   public alphaRaw(): number {
@@ -157,6 +158,13 @@ export class Colorblender {
     return luminosity(this.internalRgb);
   }
 
+  public contrast(color: AnyColor | Colorblender): number {
+    if (color instanceof Colorblender)
+      return contrast(color.rgba(), this.internalRgb);
+    const rgba = anyToRgba(color) ?? { r: 0, g: 0, b: 0, a: 1 };
+    return contrast(this.internalRgb, rgba);
+  }
+
   public rotate(amount = 15): Colorblender {
     return this.hue(this.hue() + amount);
   }
@@ -180,6 +188,8 @@ export class Colorblender {
       throw new Error('Amount should be at least 1');
     }
 
+    amount = Math.round(amount);
+
     const colorsMixed: Colorblender[] = [];
     const ratio = 1 / (amount + 1);
 
@@ -197,18 +207,3 @@ export const colorblender = (input: AnyColor | Colorblender): Colorblender => {
   if (input instanceof Colorblender) return input;
   return new Colorblender(input);
 };
-
-const white = colorblender({ r: 255, g: 255, b: 255 });
-const black = colorblender({ r: 0, g: 0, b: 0 });
-
-console.log('colorblender', colorblender({ r: 255, g: 255, b: 255 }).hex());
-console.log(
-  'colorblender 2',
-  colorblender({ r: 255, g: 255, b: 255 }).negate().rgb(),
-);
-console.log('colorblender mix', white.mix(black, 0.2).hex());
-console.log(
-  'colorblender mix 5',
-  white.mixMultiple(black, 5).map((c) => c.hex()),
-);
-console.log('colorblender rgbnumber', white.rgbNumber());
