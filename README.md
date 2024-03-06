@@ -1,18 +1,5 @@
 <div align="center">
- <style>
-  .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-.title img {
-margin-left: 10px;
-}
-</style>
-
-  <h1 class="title">Colorblender by <img src="./logo.png" width="200" /></h1>
-
+  <img src="./logo.png" width="300" />
   <p></p>
 
   <p>The most complete and fully typed color library.</p>
