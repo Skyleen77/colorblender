@@ -1,4 +1,4 @@
-import { RgbaColor } from '../types';
+import { RgbaColor } from '../../types';
 
 export const mix = (
   color1: RgbaColor,

@@ -1,7 +1,7 @@
 import type { HslColor, RgbColor } from '@colorblender/converter';
 
 import { rgbToHsl } from '@colorblender/converter';
-import { clamp } from './utils';
+import { clamp } from '../utils';
 
 export const desaturate = (rgb: RgbColor, ratio: number): HslColor => {
   const hsl = rgbToHsl(rgb);

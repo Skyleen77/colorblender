@@ -1,14 +1,15 @@
 <div align="center">
+  <p></p>
   <img src="./logo.png" width="300" />
   <p></p>
 
-  <p>The most complete and fully typed color library.</p>
+  <p>A powerful and fully typed color library.</p>
 </div>
 
 ## Features
 
 - **Fully typed** - Written in TypeScript
-- **Tiny** - Less than 10kb
+- **Tiny** - Less than 10kb gzipped
 - **Fast** - 3x faster than the most popular color library
 - **Simple** - Chainable methods
 - **Immutable** - All methods return a new instance
@@ -30,6 +31,8 @@ import { colorblender } from 'colorblender';
 ```
 
 ## Usage
+
+### Create colorblender instance
 
 ```typescript
 // HEX
@@ -67,6 +70,18 @@ colorblender({ l: 100, a: 0, b: 0, a: 1 });
 colorblender({ l: 100, c: 0, h: 0 });
 colorblender({ l: 100, c: 0, h: 0, a: 1 });
 ```
+
+### Methods
+
+<details>
+<summary><b><code>.hex()</code></b></summary><br>
+
+```typescript
+colorblender({ r: 255, g: 255, b: 255 }).hex(); // #FFFFFF
+colorblender({ r: 255, g: 255, b: 255, a: 0.5 }).hexa(); // #FFFFFF80
+```
+
+</details>
 
 ## Issues
 

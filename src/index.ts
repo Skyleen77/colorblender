@@ -1,21 +1,18 @@
-import type { HexColor, RgbColor } from '@colorblender/converter';
 import type {
+  HexColor,
+  RgbColor,
   AnyColor,
   ColorWithAlpha,
   ColorWithoutAlpha,
   RgbaColor,
 } from './types';
-
 import {
   alphaToHex,
   rgbToHex,
   rgbToHsl,
   round,
   roundColor,
-} from '@colorblender/converter';
-import {
   anyToRgba,
-  blacken,
   brightness,
   contrast,
   darken,
@@ -26,7 +23,6 @@ import {
   mix,
   negate,
   saturate,
-  whiten,
 } from './helpers';
 
 export class Colorblender {
@@ -142,13 +138,13 @@ export class Colorblender {
     return colorblender(this.withAlpha(desaturate(this.internalRgb, ratio)));
   }
 
-  public whiten(ratio: number): Colorblender {
-    return colorblender(this.withAlpha(whiten(this.internalRgb, ratio)));
-  }
+  // public whiten(ratio: number): Colorblender {
+  //   return colorblender(this.withAlpha(whiten(this.internalRgb, ratio)));
+  // }
 
-  public blacken(ratio: number): Colorblender {
-    return colorblender(this.withAlpha(blacken(this.internalRgb, ratio)));
-  }
+  // public blacken(ratio: number): Colorblender {
+  //   return colorblender(this.withAlpha(blacken(this.internalRgb, ratio)));
+  // }
 
   public grayscale(): Colorblender {
     return colorblender(this.withAlpha(grayscale(this.internalRgb)));
@@ -207,3 +203,6 @@ export const colorblender = (input: AnyColor | Colorblender): Colorblender => {
   if (input instanceof Colorblender) return input;
   return new Colorblender(input);
 };
+
+export * from './extend';
+export * from './types';

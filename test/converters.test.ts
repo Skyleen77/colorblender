@@ -97,13 +97,13 @@ describe('ConverterRgb', () => {
     });
   });
 
-  it('should whiten the color', () => {
-    expect(color1.whiten(0.2).rgb()).toStrictEqual({ r: 167, b: 16, g: 42 });
-  });
+  // it('should whiten the color', () => {
+  //   expect(color1.whiten(0.2).rgb()).toStrictEqual({ r: 167, b: 16, g: 42 });
+  // });
 
-  it('should darken the color', () => {
-    expect(color1.blacken(0.2).rgb()).toStrictEqual({ r: 149, b: 13, g: 37 });
-  });
+  // it('should darken the color', () => {
+  //   expect(color1.blacken(0.2).rgb()).toStrictEqual({ r: 149, b: 13, g: 37 });
+  // });
 
   it('should grayscale the color', () => {
     expect(color1.grayscale().rgb()).toStrictEqual({ r: 75, b: 75, g: 75 });
