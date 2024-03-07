@@ -47,27 +47,9 @@ colorblender({ h: 360, s: 100, l: 100, a: 1 });
 // HSV
 colorblender({ h: 360, s: 100, v: 100 });
 colorblender({ h: 360, s: 100, v: 100, a: 1 });
-// HWB
+// HWB (with extension @colorblender/mix)
 colorblender({ h: 0, s: 0, i: 1 });
 colorblender({ h: 0, s: 0, i: 1, a: 1 });
-// HCG
-colorblender({ h: 0, w: 100, b: 0 });
-colorblender({ h: 0, w: 100, b: 0, a: 1 });
-// HSI
-colorblender({ h: 360, c: 0, g: 100 });
-colorblender({ h: 360, c: 0, g: 100, a: 1 });
-// CMYK
-colorblender({ c: 0, m: 0, y: 0, k: 0 });
-colorblender({ c: 0, m: 0, y: 0, k: 0, a: 1 });
-// XYZ
-colorblender({ x: 95.047, y: 100, z: 108.883 });
-colorblender({ x: 95.047, y: 100, z: 108.883, a: 1 });
-// LAB
-colorblender({ l: 100, a: 0, b: 0 });
-colorblender({ l: 100, a: 0, b: 0, a: 1 });
-// LCH
-colorblender({ l: 100, c: 0, h: 0 });
-colorblender({ l: 100, c: 0, h: 0, a: 1 });
 ```
 
 ### Methods
