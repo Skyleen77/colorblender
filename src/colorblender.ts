@@ -5,9 +5,7 @@ import type {
   ColorWithAlpha,
   ColorWithoutAlpha,
   RgbaColor,
-  HslColor,
   HslaColor,
-  HsvColor,
   HsvaColor,
 } from './types';
 import {
@@ -57,21 +55,36 @@ export class Colorblender {
     converter: (color: RgbColor) => Omit<AnyColor, string>,
     raw?: boolean,
   ) {
-    return raw
-      ? converter(this._internalRgb)
-      : roundColor(converter(this._internalRgb));
-  }
-
-  public _getColorFormatWithAlpha(
-    converter: (color: RgbColor) => Omit<AnyColor, string>,
-    raw?: boolean,
-  ) {
     return {
       ...(raw
         ? converter(this._internalRgb)
         : roundColor(converter(this._internalRgb))),
       a: raw ? this._internalAlpha : this.alpha(),
     };
+  }
+
+  public hex(): HexColor {
+    const hexAlpha = alphaToHex(this._internalAlpha);
+    return `#${rgbToHex(this._internalRgb)}${
+      hexAlpha === 'FF' ? '' : hexAlpha
+    }`;
+  }
+
+  public rgb(raw = false): RgbaColor {
+    return this._getColorFormat((c) => c, raw) as RgbaColor;
+  }
+
+  public rgbNumber(): number {
+    const { r, g, b } = this._internalRgb;
+    return ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
+  }
+
+  public hsl(raw = false): HslaColor {
+    return this._getColorFormat(rgbToHsl, raw) as HslaColor;
+  }
+
+  public hsv(raw = false): HsvaColor {
+    return this._getColorFormat(rgbToHsv, raw) as HsvaColor;
   }
 
   public isValid(): boolean {
@@ -90,59 +103,20 @@ export class Colorblender {
     return this.hex() === colorblender(color).hex();
   }
 
-  public brightness(): number {
-    return round(brightness(this._internalRgb), 2);
-  }
-
-  public hex(): HexColor {
-    return `#${rgbToHex(this._internalRgb)}`;
-  }
-
-  public hexa(): HexColor {
-    return `#${rgbToHex(this._internalRgb)}${alphaToHex(this._internalAlpha)}`;
-  }
-
-  public rgb(raw = false): RgbColor {
-    return raw ? this._internalRgb : roundColor(this._internalRgb);
-  }
-
-  public rgbNumber(): number {
-    const { r, g, b } = this._internalRgb;
-    return ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
-  }
-
-  public rgba(raw = false): RgbaColor {
-    return {
-      ...(raw ? this._internalRgb : roundColor(this._internalRgb)),
-      a: raw ? this._internalAlpha : this.alpha(),
-    };
-  }
-
-  public hsl(raw = false): HslColor {
-    return this._getColorFormat(rgbToHsl, raw) as HslColor;
-  }
-
-  public hsla(raw = false): HslaColor {
-    return this._getColorFormatWithAlpha(rgbToHsl, raw) as HslaColor;
-  }
-
-  public hsv(raw = false): HsvColor {
-    return this._getColorFormat(rgbToHsv, raw) as HsvColor;
-  }
-
-  public hsva(raw = false): HsvaColor {
-    return this._getColorFormatWithAlpha(rgbToHsv, raw) as HsvaColor;
+  public brightness(raw = false): number {
+    return raw
+      ? brightness(this._internalRgb)
+      : round(brightness(this._internalRgb), 2);
   }
 
   public alpha(): number;
   public alpha(value: number): Colorblender;
-  public alpha(value?: number): Colorblender | number {
+  public alpha(value?: number): number | Colorblender {
     if (typeof value === 'number')
-      return colorblender({ ...this._internalRgb, a: value });
-    return round(this._internalAlpha, 2);
-  }
-
-  public alphaRaw(): number {
+      return colorblender({
+        ...this._internalRgb,
+        a: value,
+      });
     return this._internalAlpha;
   }
 
@@ -190,7 +164,7 @@ export class Colorblender {
 
   public contrast(color: AnyColor | Colorblender): number {
     if (color instanceof Colorblender)
-      return contrast(color.rgba(), this._internalRgb);
+      return contrast(color.rgb(), this._internalRgb);
     const rgba = anyToRgba(color) ?? { r: 0, g: 0, b: 0, a: 1 };
     return contrast(this._internalRgb, rgba);
   }
@@ -199,14 +173,11 @@ export class Colorblender {
     return this.hue(this.hue() + amount);
   }
 
-  public mix(
-    color: AnyColor | Colorblender,
-    weight: number = 0.5,
-  ): Colorblender {
-    if (color instanceof Colorblender) return this.mix(color.rgba(), weight);
+  public mix(color: AnyColor | Colorblender, weight = 0.5): Colorblender {
+    if (color instanceof Colorblender) return this.mix(color.rgb(), weight);
 
     const rgba = anyToRgba(color) ?? { r: 0, g: 0, b: 0, a: 1 };
-    const mixed = mix(rgba, this.rgba(), weight);
+    const mixed = mix(rgba, this.rgb(), weight);
     return colorblender(mixed);
   }
 

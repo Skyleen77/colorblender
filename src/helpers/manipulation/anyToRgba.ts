@@ -5,7 +5,9 @@ const convertToRgba = (
   color: object,
   convertFunc: (color: object) => RgbColor,
 ): RgbaColor | null => {
-  const alpha = 'a' in color ? (color as any).a : 1;
+  let alpha = 'a' in color ? (color as any).a : 1;
+  if (alpha < 0) alpha = 0;
+  if (alpha > 1) alpha = 1;
   const rgb = convertFunc(color);
   return { ...rgb, a: alpha };
 };

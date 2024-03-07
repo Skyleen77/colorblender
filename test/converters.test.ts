@@ -33,44 +33,49 @@ describe('ConverterRgb', () => {
     expect(color1.brightness()).toBe(0.29);
   });
 
+  it('should return brightness raw', () => {
+    expect(color1.brightness(true)).toBe(0.29370588235294115);
+  });
+
   it('should return hex color', () => {
     expect(color1.hex()).toBe('#A7280D');
   });
 
-  it('should return hexa color', () => {
-    expect(color1.hexa()).toBe('#A7280DFF');
+  it('should return hex color', () => {
+    expect(colorblender({ ...color1.rgb(), a: 0.9 }).hex()).toBe('#A7280DE6');
+  });
+
+  it('should return rgb when enter a minify hex color', () => {
+    expect(colorblender('#FFF').rgb()).toStrictEqual({
+      r: 255,
+      g: 255,
+      b: 255,
+      a: 1,
+    });
   });
 
   it('should return rgb color', () => {
-    expect(color1.rgb()).toStrictEqual({ r: 167, g: 40, b: 13 });
+    expect(color1.rgb()).toStrictEqual({ r: 167, g: 40, b: 13, a: 1 });
   });
 
   it('should return rgb number', () => {
     expect(color1.rgbNumber()).toBe(10954765);
   });
 
-  it('should return rgba color', () => {
-    expect(color1.rgba()).toStrictEqual({ r: 167, g: 40, b: 13, a: 1 });
-  });
-
   it('should return hsl color', () => {
-    expect(color1.hsl()).toStrictEqual({ h: 11, s: 86, l: 35 });
+    expect(color1.hsl()).toStrictEqual({ h: 11, s: 86, l: 35, a: 1 });
   });
 
-  it('should return hsla color', () => {
-    expect(color1.hsla()).toStrictEqual({ h: 11, s: 86, l: 35, a: 1 });
+  it('should return hsv color', () => {
+    expect(color1.hsv()).toStrictEqual({ h: 11, s: 92, v: 65, a: 1 });
   });
 
   it('should return the alpha', () => {
     expect(color1.alpha()).toBe(1);
   });
 
-  it('should set the alpha', () => {
-    expect(color1.alpha(0.593728).alpha()).toBe(0.59);
-  });
-
-  it('should return the alpha raw', () => {
-    expect(color1.alpha(0.593728).alphaRaw()).toBe(0.593728);
+  it('should set the alpha and return it', () => {
+    expect(color1.alpha(0.59).alpha()).toBe(0.59);
   });
 
   it('should return the hue', () => {
@@ -82,19 +87,39 @@ describe('ConverterRgb', () => {
   });
 
   it('should negate the color', () => {
-    expect(color1.negate().rgb()).toStrictEqual({ r: 88, b: 242, g: 215 });
+    expect(color1.negate().rgb()).toStrictEqual({
+      r: 88,
+      b: 242,
+      g: 215,
+      a: 1,
+    });
   });
 
   it('should lighten the color', () => {
-    expect(color1.lighten(0.2).rgb()).toStrictEqual({ r: 200, b: 16, g: 48 });
+    expect(color1.lighten(0.2).rgb()).toStrictEqual({
+      r: 200,
+      b: 16,
+      g: 48,
+      a: 1,
+    });
   });
 
   it('should darken the color', () => {
-    expect(color1.darken(0.2).rgb()).toStrictEqual({ r: 134, b: 10, g: 32 });
+    expect(color1.darken(0.2).rgb()).toStrictEqual({
+      r: 134,
+      b: 10,
+      g: 32,
+      a: 1,
+    });
   });
 
   it('should saturate the color', () => {
-    expect(color1.saturate(0.2).rgb()).toStrictEqual({ r: 180, b: 0, g: 32 });
+    expect(color1.saturate(0.2).rgb()).toStrictEqual({
+      r: 180,
+      b: 0,
+      g: 32,
+      a: 1,
+    });
   });
 
   it('should desaturate the color', () => {
@@ -102,19 +127,17 @@ describe('ConverterRgb', () => {
       r: 152,
       g: 50,
       b: 28,
+      a: 1,
     });
   });
 
-  // it('should whiten the color', () => {
-  //   expect(color1.whiten(0.2).rgb()).toStrictEqual({ r: 167, b: 16, g: 42 });
-  // });
-
-  // it('should darken the color', () => {
-  //   expect(color1.blacken(0.2).rgb()).toStrictEqual({ r: 149, b: 13, g: 37 });
-  // });
-
   it('should grayscale the color', () => {
-    expect(color1.grayscale().rgb()).toStrictEqual({ r: 75, b: 75, g: 75 });
+    expect(color1.grayscale().rgb()).toStrictEqual({
+      r: 75,
+      b: 75,
+      g: 75,
+      a: 1,
+    });
   });
 
   it('should grayscale the color', () => {
@@ -134,14 +157,15 @@ describe('ConverterRgb', () => {
       r: 139,
       g: 82,
       b: 47,
+      a: 1,
     });
   });
 
   it('should mix the color multiple', () => {
     expect(color1.mixMultiple(color2, 3).map((c) => c.rgb())).toStrictEqual([
-      { r: 132, b: 56, g: 93 },
-      { r: 98, b: 99, g: 146 },
-      { r: 63, b: 142, g: 199 },
+      { r: 132, b: 56, g: 93, a: 1 },
+      { r: 98, b: 99, g: 146, a: 1 },
+      { r: 63, b: 142, g: 199, a: 1 },
     ]);
   });
 });
