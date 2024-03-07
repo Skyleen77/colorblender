@@ -168,6 +168,8 @@ colorblender({ r: 167, g: 40, b: 13 }).negate().rgb(); // { r: 88, b: 242, g: 21
 <details>
 <summary><b><code>.lighten(ratio: number)</code></b></summary><br>
 
+`ratio` is between 0 and 1.
+
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).lighten(0.2).rgb(); // { r: 200, b: 16, g: 48, a: 1 }
 ```
@@ -176,6 +178,8 @@ colorblender({ r: 167, g: 40, b: 13 }).lighten(0.2).rgb(); // { r: 200, b: 16, g
 
 <details>
 <summary><b><code>.darken(ratio: number)</code></b></summary><br>
+
+`ratio` is between 0 and 1.
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).darken(0.2).rgb(); // { r: 134, b: 10, g: 32, a: 1 }
@@ -186,6 +190,8 @@ colorblender({ r: 167, g: 40, b: 13 }).darken(0.2).rgb(); // { r: 134, b: 10, g:
 <details>
 <summary><b><code>.saturate(ratio: number)</code></b></summary><br>
 
+`ratio` is between 0 and 1.
+
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).saturate(0.2).rgb(); // { r: 180, b: 0, g: 32, a: 1 }
 ```
@@ -194,6 +200,8 @@ colorblender({ r: 167, g: 40, b: 13 }).saturate(0.2).rgb(); // { r: 180, b: 0, g
 
 <details>
 <summary><b><code>.desaturate(ratio: number)</code></b></summary><br>
+
+`ratio` is between 0 and 1.
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).desaturate(0.2).rgb(); // { r: 152, b: 50, g: 28, a: 1 }
@@ -242,6 +250,28 @@ colorblender({ r: 167, g: 40, b: 13 })
 //   { r: 98, b: 99, g: 146, a: 1 },
 //   { r: 63, b: 142, g: 199, a: 1 },
 // ]
+```
+
+</details>
+
+<details>
+<summary><b><code>.whiten(ratio: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/hwb"><b>@colorblender/hwb</b></a></summary><br>
+
+`ratio` is between 0 and 1.
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).whiten(0.2).rgb(); // { r: 167, b: 16, g: 42 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.blacken(ratio: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/hwb"><b>@colorblender/hwb</b></a></summary><br>
+
+`ratio` is between 0 and 1.
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).blacken(0.2).rgb(); // { r: 149, b: 13, g: 37 }
 ```
 
 </details>
