@@ -386,7 +386,7 @@ colorblender({ r: 167, g: 40, b: 13 }).hue(); // 11
 </details>
 
 <details>
-<summary><b><code>.luminosity()</code></b></summary><br>
+<summary><b><code>.luminosity()</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/a11y"><b>@colorblender/a11y</b></a></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).luminosity(); // 0.0976213184127798
@@ -395,13 +395,32 @@ colorblender({ r: 167, g: 40, b: 13 }).luminosity(); // 0.0976213184127798
 </details>
 
 <details>
-<summary><b><code>.contrast(color: AnyColor | Colorblender)</code></b></summary><br>
+<summary><b><code>.contrast(color: AnyColor | Colorblender)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/a11y"><b>@colorblender/a11y</b></a></summary><br>
 
 ```typescript
-colorblender({ r: 167, g: 40, b: 13 }).contrast({ r: 28, g: 252, b: 185 }); // 0.0976213184127798
-colorblender({ r: 167, g: 40, b: 13 }).contrast(
-  colorblender({ r: 28, g: 252, b: 185 }),
-); // 0.0976213184127798
+colorblender({ r: 167, g: 40, b: 13 }).contrast({ r: 28, g: 252, b: 185 }); // 5.308885390786212
+```
+
+</details>
+
+<details>
+<summary><b><code>.isReadable(color: AnyColor | Colorblender, options: ReadabilityOptions)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/a11y"><b>@colorblender/a11y</b></a></summary><br>
+
+```typescript
+interface ReadabilityOptions {
+  level?: 'AA' | 'AAA';
+  size?: 'normal' | 'large';
+}
+```
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).isReadable(
+  { r: 28, g: 252, b: 185 },
+  {
+    level: 'AAA',
+    size: 'large',
+  },
+); // true
 ```
 
 </details>
@@ -410,6 +429,7 @@ colorblender({ r: 167, g: 40, b: 13 }).contrast(
 
 - [@colorblender/hwb](https://www.npmjs.com/package/@colorblender/hwb)
 - [@colorblender/mix](https://www.npmjs.com/package/@colorblender/mix)
+- [@colorblender/a11y](https://www.npmjs.com/package/@colorblender/a11y)
 
 ## Issues
 
