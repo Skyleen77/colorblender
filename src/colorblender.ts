@@ -16,12 +16,10 @@ import {
   roundColor,
   anyToRgba,
   brightness,
-  contrast,
   darken,
   desaturate,
   grayscale,
   lighten,
-  luminosity,
   negate,
   saturate,
   rgbToHsv,
@@ -155,17 +153,6 @@ export class Colorblender {
 
   public grayscale(): Colorblender {
     return colorblender(this._withAlpha(grayscale(this._internalRgb)));
-  }
-
-  public luminosity(): number {
-    return luminosity(this._internalRgb);
-  }
-
-  public contrast(color: AnyColor | Colorblender): number {
-    if (color instanceof Colorblender)
-      return contrast(color.rgb(), this._internalRgb);
-    const rgba = anyToRgba(color) ?? { r: 0, g: 0, b: 0, a: 1 };
-    return contrast(this._internalRgb, rgba);
   }
 
   public rotate(amount = 15): Colorblender {

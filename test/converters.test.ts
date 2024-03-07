@@ -140,14 +140,6 @@ describe('colorblender', () => {
     });
   });
 
-  it('should grayscale the color', () => {
-    expect(color1.luminosity()).toBe(0.0976213184127798);
-  });
-
-  it('should grayscale the color', () => {
-    expect(color1.contrast(color2)).toBe(5.308885390786212);
-  });
-
   it('should rotate the color', () => {
     expect(color1.rotate(20).hue()).toBe(31);
   });
