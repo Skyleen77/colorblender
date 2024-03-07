@@ -53,6 +53,14 @@ describe('ConverterRgb', () => {
     expect(color1.rgba()).toStrictEqual({ r: 167, g: 40, b: 13, a: 1 });
   });
 
+  it('should return hsl color', () => {
+    expect(color1.hsl()).toStrictEqual({ h: 11, s: 86, l: 35 });
+  });
+
+  it('should return hsla color', () => {
+    expect(color1.hsla()).toStrictEqual({ h: 11, s: 86, l: 35, a: 1 });
+  });
+
   it('should return the alpha', () => {
     expect(color1.alpha()).toBe(1);
   });

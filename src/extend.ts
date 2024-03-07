@@ -1,4 +1,4 @@
-import { Colorblender } from './';
+import { Colorblender } from './colorblender';
 import { converters } from './helpers';
 import { Converter } from './types';
 

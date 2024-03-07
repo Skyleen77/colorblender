@@ -1,4 +1,4 @@
-import type { RgbColor } from '@colorblender/converter';
+import type { RgbColor } from '../../types';
 
 export const negate = (rgb: RgbColor): RgbColor => {
   return {

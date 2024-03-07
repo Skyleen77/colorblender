@@ -1,4 +1,4 @@
-import type { RgbColor } from '@colorblender/converter';
+import type { RgbColor } from '../../types';
 import { luminosity } from './luminosity';
 
 export const contrast = (rgb1: RgbColor, rgb2: RgbColor): number => {

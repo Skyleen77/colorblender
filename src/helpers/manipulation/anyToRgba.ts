@@ -1,6 +1,5 @@
-import { RgbColor, hexToRgb } from '@colorblender/converter';
-import type { AnyColor, RgbaColor } from '../../types';
-import { converters } from '../converters';
+import type { AnyColor, RgbaColor, RgbColor } from '../../types';
+import { converters, hexToRgb } from '../converters';
 
 const convertToRgba = (
   color: object,

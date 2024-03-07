@@ -1,4 +1,4 @@
-import type { RgbColor } from '@colorblender/converter';
+import type { RgbColor } from '../../types';
 
 export const luminosity = (rgb: RgbColor): number => {
   const toLum = (value: number): number => {

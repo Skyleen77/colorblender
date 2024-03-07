@@ -1,6 +1,6 @@
 import type { HsvColor, RgbColor } from '../../types';
 
-import { roundColor } from '../../helpers';
+import { roundColor } from '../../helpers/utils';
 
 export const rgbToHsv = (rgb: RgbColor, rounded?: boolean): HsvColor => {
   let rdif;

@@ -1,5 +1,4 @@
-import type { RgbColor, ColorObject, HexColor } from '../types';
-import { hexToRgb } from './converters';
+import type { RgbColor } from '../types';
 
 export const clamp = (number: number, min = 0, max = 1): number => {
   return number > max ? max : number > min ? number : min;
@@ -39,24 +38,3 @@ export function colorDistance(color1: RgbColor, color2: RgbColor): number {
       Math.pow(color1.b - color2.b, 2),
   );
 }
-
-export const findClosestColor = (
-  colors: Record<string, HexColor>,
-  targetHex: HexColor,
-): ColorObject => {
-  let closestColor: ColorObject = { name: '', hex: '' };
-  let minDistance = Infinity;
-  const targetColor = hexToRgb(targetHex);
-
-  Object.entries(colors).forEach(([name, hex]) => {
-    const rgb = hexToRgb(hex);
-    const distance = colorDistance(rgb, targetColor);
-
-    if (distance < minDistance) {
-      minDistance = distance;
-      closestColor = { name, hex };
-    }
-  });
-
-  return closestColor;
-};

@@ -1,6 +1,6 @@
 import type { HslColor, RgbColor } from '../../types';
 
-import { roundColor } from '../../helpers';
+import { roundColor } from '../../helpers/utils';
 
 export const rgbToHsl = (rgb: RgbColor, rounded?: boolean): HslColor => {
   const r = rgb.r / 255;

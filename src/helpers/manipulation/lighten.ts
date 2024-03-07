@@ -1,6 +1,6 @@
-import type { HslColor, RgbColor } from '@colorblender/converter';
+import type { HslColor, RgbColor } from '../../types';
 
-import { rgbToHsl } from '@colorblender/converter';
+import { rgbToHsl } from '../converters';
 import { clamp } from '../utils';
 
 export const lighten = (rgb: RgbColor, ratio: number): HslColor => {

@@ -1,6 +1,6 @@
 import type { HexColor, RgbColor } from '../../types';
 
-import { round, roundColor } from '../../helpers';
+import { round, roundColor } from '../../helpers/utils';
 
 export function alphaToHex(alpha: number): string {
   return Math.round(alpha * 255)

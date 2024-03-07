@@ -1,6 +1,6 @@
 {
   "name": "colorblender",
-  "version": "1.0.2",
+  "version": "1.0.11",
   "description": "A powerful and fully typed color library.",
   "repository": {
     "type": "git",
@@ -72,8 +72,5 @@
     "ts-jest": "^29.1.2",
     "tsx": "^4.7.1",
     "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "@colorblender/converter": "latest"
   }
 }
