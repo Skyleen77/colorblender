@@ -9,7 +9,7 @@
 ## Features
 
 - **Fully typed** - Written in TypeScript
-- **Tiny** - Less than 10kb gzipped
+- **Tiny** - Less than 3kb gzipped
 - **Fast** - 3x faster than the most popular color library
 - **Simple** - Chainable methods
 - **Complete** - Supports a lot of color models
@@ -228,33 +228,6 @@ colorblender({ r: 167, g: 40, b: 13 }).rotate(20).hue(); // 31
 </details>
 
 <details>
-<summary><b><code>.mix(color: AnyColor | Colorblender, weight = 0.5)</code></b></summary><br>
-
-```typescript
-colorblender({ r: 167, g: 40, b: 13 })
-  .mix({ r: 28, g: 252, b: 185 }, 0.2)
-  .rgb(); // { r: 139, g: 82, b: 47, a: 1 }
-```
-
-</details>
-
-<details>
-<summary><b><code>.mixMultiple(color: AnyColor | Colorblender, amount: number)</code></b></summary><br>
-
-```typescript
-colorblender({ r: 167, g: 40, b: 13 })
-  .mixMultiple({ r: 28, g: 252, b: 185 }, 3)
-  .map((c) => c.rgb());
-// [
-//   { r: 132, b: 56, g: 93, a: 1 },
-//   { r: 98, b: 99, g: 146, a: 1 },
-//   { r: 63, b: 142, g: 199, a: 1 },
-// ]
-```
-
-</details>
-
-<details>
 <summary><b><code>.whiten(ratio: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/hwb"><b>@colorblender/hwb</b></a></summary><br>
 
 `ratio` is between 0 and 1.
@@ -272,6 +245,89 @@ colorblender({ r: 167, g: 40, b: 13 }).whiten(0.2).rgb(); // { r: 167, b: 16, g:
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).blacken(0.2).rgb(); // { r: 149, b: 13, g: 37 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.mix(color: AnyColor | Colorblender, weight = 0.5)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 })
+  .mix({ r: 28, g: 252, b: 185 }, 0.2)
+  .hex(); // #629263
+```
+
+</details>
+
+<details>
+<summary><b><code>.mixPalette(color: AnyColor | Colorblender, amount: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 })
+  .mixPalette({ r: 28, g: 252, b: 185 }, 5)
+  .map((c) => c.hex());
+// [
+//   '#904B2A',
+//   '#796F46',
+//   '#629263',
+//   '#4AB580',
+//   '#33D99C',
+// ]
+```
+
+</details>
+
+<details>
+<summary><b><code>.tints(amount: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 })
+  .tints(5)
+  .map((c) => c.hex());
+// [
+//   '#B64C35',
+//   '#C4705E',
+//   '#D39486',
+//   '#E2B7AE',
+//   '#F0DBD7',
+// ]
+```
+
+</details>
+
+<details>
+<summary><b><code>.shades(amount: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 })
+  .shades(5)
+  .map((c) => c.hex());
+// [
+//   '#8B210B',
+//   '#6F1B09',
+//   '#541407',
+//   '#380D04',
+//   '#1C0702',
+// ]
+```
+
+</details>
+
+<details>
+<summary><b><code>.tones(amount: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 })
+  .tones(5)
+  .map((c) => c.hex());
+// [
+//   '#A13720',
+//   '#9A4533',
+//   '#945447',
+//   '#8D635A',
+//   '#87716D',
+// ]
 ```
 
 </details>
@@ -371,6 +427,7 @@ colorblender({ r: 167, g: 40, b: 13 }).contrast(
 ### Extensions
 
 - [@colorblender/hwb](https://www.npmjs.com/package/@colorblender/hwb)
+- [@colorblender/mix](https://www.npmjs.com/package/@colorblender/mix)
 
 ## Issues
 

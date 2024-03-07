@@ -3,7 +3,7 @@ import { colorblender } from '../dist';
 const color1 = colorblender({ r: 167, g: 40, b: 13 });
 const color2 = colorblender({ r: 28, g: 252, b: 185 });
 
-describe('ConverterRgb', () => {
+describe('colorblender', () => {
   it('should verify if color is valid', () => {
     expect(color1.isValid()).toBe(true);
   });
@@ -150,22 +150,5 @@ describe('ConverterRgb', () => {
 
   it('should rotate the color', () => {
     expect(color1.rotate(20).hue()).toBe(31);
-  });
-
-  it('should mix the color', () => {
-    expect(color1.mix(color2, 0.2).rgb()).toStrictEqual({
-      r: 139,
-      g: 82,
-      b: 47,
-      a: 1,
-    });
-  });
-
-  it('should mix the color multiple', () => {
-    expect(color1.mixMultiple(color2, 3).map((c) => c.rgb())).toStrictEqual([
-      { r: 132, b: 56, g: 93, a: 1 },
-      { r: 98, b: 99, g: 146, a: 1 },
-      { r: 63, b: 142, g: 199, a: 1 },
-    ]);
   });
 });

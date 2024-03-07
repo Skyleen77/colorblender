@@ -22,7 +22,6 @@ import {
   grayscale,
   lighten,
   luminosity,
-  mix,
   negate,
   saturate,
   rgbToHsv,
@@ -172,36 +171,6 @@ export class Colorblender {
   public rotate(amount = 15): Colorblender {
     return this.hue(this.hue() + amount);
   }
-
-  public mix(color: AnyColor | Colorblender, weight = 0.5): Colorblender {
-    if (color instanceof Colorblender) return this.mix(color.rgb(), weight);
-
-    const rgba = anyToRgba(color) ?? { r: 0, g: 0, b: 0, a: 1 };
-    const mixed = mix(rgba, this.rgb(), weight);
-    return colorblender(mixed);
-  }
-
-  public mixMultiple = (
-    color: AnyColor | Colorblender,
-    amount: number,
-  ): Colorblender[] => {
-    if (amount < 1) {
-      throw new Error('Amount should be at least 1');
-    }
-
-    amount = Math.round(amount);
-
-    const colorsMixed: Colorblender[] = [];
-    const ratio = 1 / (amount + 1);
-
-    for (let i = 0; i < amount; i++) {
-      const weight = ratio * (i + 1);
-      const mixedColor = this.mix(color, weight);
-      colorsMixed.push(mixedColor);
-    }
-
-    return colorsMixed;
-  };
 }
 
 export const colorblender = (input: AnyColor | Colorblender): Colorblender => {
