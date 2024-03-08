@@ -140,6 +140,14 @@ describe('colorblender', () => {
     });
   });
 
+  it('should fade the color', () => {
+    expect(color1.fade(0.2).alpha()).toBe(0.8);
+  });
+
+  it('should fade the color', () => {
+    expect(color1.alpha(0.5).opaquer(0.2).alpha()).toBe(0.6);
+  });
+
   it('should rotate the color', () => {
     expect(color1.rotate(20).hue()).toBe(31);
   });

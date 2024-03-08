@@ -41,6 +41,10 @@ export class Colorblender {
     this._internalAlpha = rgba?.a ?? 1;
   }
 
+  public _clampRatio(ratio: number): number {
+    return Math.min(1, Math.max(0, ratio));
+  }
+
   public _withAlpha(color: ColorWithoutAlpha): ColorWithAlpha {
     return {
       ...color,
@@ -136,19 +140,33 @@ export class Colorblender {
   }
 
   public lighten(ratio: number): Colorblender {
+    ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(lighten(this._internalRgb, ratio)));
   }
 
   public darken(ratio: number): Colorblender {
+    ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(darken(this._internalRgb, ratio)));
   }
 
   public saturate(ratio: number): Colorblender {
+    ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(saturate(this._internalRgb, ratio)));
   }
 
   public desaturate(ratio: number): Colorblender {
+    ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(desaturate(this._internalRgb, ratio)));
+  }
+
+  public fade(ratio: number): Colorblender {
+    ratio = this._clampRatio(ratio);
+    return this.alpha(this._internalAlpha - this._internalAlpha * ratio);
+  }
+
+  public opaquer(ratio: number): Colorblender {
+    ratio = this._clampRatio(ratio);
+    return this.alpha(this._internalAlpha + this._internalAlpha * ratio);
   }
 
   public grayscale(): Colorblender {

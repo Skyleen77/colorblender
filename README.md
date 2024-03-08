@@ -14,7 +14,7 @@
 - **Simple** - Chainable methods
 - **Complete** - Supports a lot of color models
 - **Conversion** - Convert between any of the supported color models
-- **Plugins** - Extend the library with custom color models
+- **Extension** - Extend the library with others color models, manipulation, and analysis methods
 - **Support** - Support all browsers and Node.js
 
 ## Installation
@@ -187,6 +187,28 @@ colorblender({ r: 167, g: 40, b: 13 }).saturate(0.2).rgb(); // { r: 180, b: 0, g
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).desaturate(0.2).rgb(); // { r: 152, b: 50, g: 28, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.fade(ratio: number)</code></b></summary><br>
+
+`ratio` is between 0 and 1.
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13, a: 1 }).fade(0.2).alpha(); // 0.8
+```
+
+</details>
+
+<details>
+<summary><b><code>.opaquer(ratio: number)</code></b></summary><br>
+
+`ratio` is between 0 and 1.
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).opaquer(0.2).alpha(); // 0.6
 ```
 
 </details>
