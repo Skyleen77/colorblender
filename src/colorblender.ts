@@ -74,6 +74,9 @@ export class Colorblender {
     };
   }
 
+  /**
+   * @returns The color in the HEX format.
+   */
   public hex(): HexColor {
     const hexAlpha = alphaToHex(this._internalAlpha);
     return `#${rgbToHex(this._internalRgb)}${
@@ -81,45 +84,80 @@ export class Colorblender {
     }`;
   }
 
+  /**
+   * @param raw If true, the output will be in the raw format.
+   * @returns The color in the RGB format.
+   */
   public rgb(raw = false): RgbaColor {
     return this._getColorFormat((c) => c, raw) as RgbaColor;
   }
 
+  /**
+   * @returns The color in the base 10 format.
+   */
   public rgbNumber(): number {
     const { r, g, b } = this._internalRgb;
     return ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
   }
 
+  /**
+   * @param raw If true, the output will be in the raw format.
+   * @returns The color in the HSL format.
+   */
   public hsl(raw = false): HslaColor {
     return this._getColorFormat(rgbToHsl, raw) as HslaColor;
   }
 
+  /**
+   * @returns the color in the HSV format.
+   */
   public hsv(raw = false): HsvaColor {
     return this._getColorFormat(rgbToHsv, raw) as HsvaColor;
   }
 
+  /**
+   * @returns true if the color is valid, false otherwise.
+   */
   public isValid(): boolean {
     return this._internalValid;
   }
 
+  /**
+   * @returns true if the color is dark, false otherwise.
+   */
   public isDark(): boolean {
     return brightness(this._internalRgb) < 0.5;
   }
 
+  /**
+   * @returns true if the color is light, false otherwise.
+   */
   public isLight(): boolean {
     return brightness(this._internalRgb) >= 0.5;
   }
 
+  /**
+   * @param color The color to compare.
+   * @returns true if the color is equal to the given color, false otherwise.
+   */
   public isEqual(color: AnyColor | Colorblender): boolean {
     return this.hex() === colorblender(color).hex();
   }
 
+  /**
+   * @param raw If true, the output will be in the raw format.
+   * @returns the brightness of the color.
+   */
   public brightness(raw = false): number {
     return raw
       ? brightness(this._internalRgb)
       : round(brightness(this._internalRgb), 2);
   }
 
+  /**
+   * @param value The alpha value to set.
+   * @returns The alpha value of the color if no value is provided, otherwise returns the Colorblender instance.
+   */
   public alpha(): number;
   public alpha(value: number): Colorblender;
   public alpha(value?: number): number | Colorblender {
@@ -131,6 +169,10 @@ export class Colorblender {
     return this._internalAlpha;
   }
 
+  /**
+   * @param value The hue value to set.
+   * @returns The hue value of the color if no value is provided, otherwise returns the Colorblender instance.
+   */
   public hue(): number;
   public hue(value: number): Colorblender;
   public hue(value?: number): Colorblender | number {
@@ -145,44 +187,79 @@ export class Colorblender {
     return round(hsl.h);
   }
 
+  /**
+   * @returns The color inverted.
+   */
   public negate(): Colorblender {
     return colorblender(this._withAlpha(negate(this._internalRgb)));
   }
 
+  /**
+   *
+   * @param ratio The ratio to lighten the color (between 0 and 1).
+   * @returns The color lightened.
+   */
   public lighten(ratio: number): Colorblender {
     ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(lighten(this._internalRgb, ratio)));
   }
 
+  /**
+   * @param ratio The ratio to darken the color (between 0 and 1).
+   * @returns The color darkened.
+   */
   public darken(ratio: number): Colorblender {
     ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(darken(this._internalRgb, ratio)));
   }
 
+  /**
+   * @param ratio The ratio to saturate the color (between 0 and 1).
+   * @returns The color saturated.
+   */
   public saturate(ratio: number): Colorblender {
     ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(saturate(this._internalRgb, ratio)));
   }
 
+  /**
+   * @param ratio The ratio to desaturate the color (between 0 and 1).
+   * @returns The color desaturated.
+   */
   public desaturate(ratio: number): Colorblender {
     ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(desaturate(this._internalRgb, ratio)));
   }
 
+  /**
+   * @param ratio The ratio to fade the color (between 0 and 1).
+   * @returns The color faded.
+   */
   public fade(ratio: number): Colorblender {
     ratio = this._clampRatio(ratio);
     return this.alpha(this._internalAlpha - this._internalAlpha * ratio);
   }
 
+  /**
+   * @param ratio The ratio to opaquer the color (between 0 and 1).
+   * @returns The color opaqued.
+   */
   public opaquer(ratio: number): Colorblender {
     ratio = this._clampRatio(ratio);
     return this.alpha(this._internalAlpha + this._internalAlpha * ratio);
   }
 
+  /**
+   * @returns The grayscale color.
+   */
   public grayscale(): Colorblender {
     return colorblender(this._withAlpha(grayscale(this._internalRgb)));
   }
 
+  /**
+   * @param amount The amount to rotate the color (between 0 and 360).
+   * @returns The color rotated.
+   */
   public rotate(amount = 15): Colorblender {
     return this.hue(this.hue() + amount);
   }
