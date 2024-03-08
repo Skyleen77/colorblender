@@ -4,6 +4,10 @@ const color1 = colorblender({ r: 167, g: 40, b: 13 });
 const color2 = colorblender({ r: 28, g: 252, b: 185 });
 
 describe('colorblender', () => {
+  it('should create a random color valid', () => {
+    expect(colorblender().isValid()).toBe(true);
+  });
+
   it('should verify if color is valid', () => {
     expect(color1.isValid()).toBe(true);
   });

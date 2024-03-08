@@ -34,6 +34,8 @@ import { colorblender } from 'colorblender';
 ### Create colorblender instance
 
 ```typescript
+// Random Color
+colorblender();
 // HEX
 colorblender('#FFF');
 colorblender('#FFFFFF');
@@ -336,6 +338,17 @@ colorblender({ r: 167, g: 40, b: 13 })
 
 </details>
 
+<details>
+<summary><b><code>.harmonies(type: HarmonyType)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/harmony"><b>@colorblender/harmony</b></a></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 })
+  .harmonies('analogous')
+  .map((c) => c.hex()); // #629263
+```
+
+</details>
+
 #### Analysis
 
 <details>
@@ -449,9 +462,22 @@ colorblender({ r: 167, g: 40, b: 13 }).isReadable(
 
 ### Extensions
 
+<details>
+<summary><b><code>extend(extensions: Extension[])</code></b></summary><br>
+
+```typescript
+import { hwbExtension } from '@colorblender/hwb';
+import { mixExtension } from '@colorblender/mix';
+
+extend([hwbExtension, mixExtension]);
+```
+
+</details>
+
 - [@colorblender/hwb](https://www.npmjs.com/package/@colorblender/hwb)
 - [@colorblender/mix](https://www.npmjs.com/package/@colorblender/mix)
 - [@colorblender/a11y](https://www.npmjs.com/package/@colorblender/a11y)
+- [@colorblender/harmony](https://www.npmjs.com/package/@colorblender/harmony)
 
 ## Issues
 
@@ -462,3 +488,5 @@ Please file an issue for bugs, missing documentation, or unexpected behavior.
 ## License
 
 MIT
+
+The API was inspired by color and colord libraries.

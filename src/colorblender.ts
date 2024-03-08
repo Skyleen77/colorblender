@@ -30,15 +30,25 @@ export class Colorblender {
   readonly _internalRgb: RgbColor;
   readonly _internalAlpha: number;
 
-  constructor(input: AnyColor) {
-    const rgba = anyToRgba(input);
-    this._internalValid = rgba !== null;
-    this._internalRgb = {
-      r: rgba?.r ?? 0,
-      g: rgba?.g ?? 0,
-      b: rgba?.b ?? 0,
-    };
-    this._internalAlpha = rgba?.a ?? 1;
+  constructor(input?: AnyColor) {
+    if (!input) {
+      this._internalValid = true;
+      this._internalRgb = {
+        r: Math.random() * 255,
+        g: Math.random() * 255,
+        b: Math.random() * 255,
+      };
+      this._internalAlpha = 1;
+    } else {
+      const rgba = anyToRgba(input);
+      this._internalValid = rgba !== null;
+      this._internalRgb = {
+        r: rgba?.r ?? 0,
+        g: rgba?.g ?? 0,
+        b: rgba?.b ?? 0,
+      };
+      this._internalAlpha = rgba?.a ?? 1;
+    }
   }
 
   public _clampRatio(ratio: number): number {
@@ -178,7 +188,7 @@ export class Colorblender {
   }
 }
 
-export const colorblender = (input: AnyColor | Colorblender): Colorblender => {
+export const colorblender = (input?: AnyColor | Colorblender): Colorblender => {
   if (input instanceof Colorblender) return input;
   return new Colorblender(input);
 };
