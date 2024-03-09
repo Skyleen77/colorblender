@@ -1,6 +1,6 @@
 import type { HslColor, RgbColor } from '../../types';
+import { rgbToHsl } from '../converters/hsl';
 
-import { rgbToHsl } from '../converters';
 import { clamp } from '../utils';
 
 export const desaturate = (rgb: RgbColor, ratio: number): HslColor => {

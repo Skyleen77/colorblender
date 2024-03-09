@@ -1,4 +1,4 @@
-import { colorblender } from '../dist';
+import { colorblender } from '../src';
 
 const color1 = colorblender({ r: 167, g: 40, b: 13 });
 const color2 = colorblender({ r: 28, g: 252, b: 185 });

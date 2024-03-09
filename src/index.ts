@@ -1,4 +1,28 @@
-export * from './extend';
-export * from './types';
-export * from './colorblender';
-export * from './helpers';
+export { colorblender, Colorblender } from './colorblender';
+export { extend, Extensions } from './extend';
+export {
+  HexColor,
+  RgbColor,
+  HslColor,
+  HsvColor,
+  HwbColor,
+  HcgColor,
+  CmykColor,
+  XyzColor,
+  LabColor,
+  LchColor,
+  AppleColor,
+  HsiColor,
+  GrayColor,
+  RgbaColor,
+  HslaColor,
+  HsvaColor,
+  HsiaColor,
+  HwbaColor,
+  HcgaColor,
+  XyzaColor,
+  LabaColor,
+  LchaColor,
+  CmykaColor,
+  AnyColor,
+} from './types';

@@ -1,6 +1,7 @@
+import type { Converter } from './types';
+
 import { Colorblender } from './colorblender';
-import { converters } from './helpers';
-import { Converter } from './types';
+import { converters } from './helpers/converters/converters';
 
 export type Extensions = (
   Class: typeof Colorblender,

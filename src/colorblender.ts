@@ -2,28 +2,26 @@ import type {
   HexColor,
   RgbColor,
   AnyColor,
-  ColorWithAlpha,
-  ColorWithoutAlpha,
   RgbaColor,
   HslaColor,
   HsvaColor,
+  HslColor,
+  HwbaColor,
+  HwbColor,
 } from './types';
-import {
-  alphaToHex,
-  rgbToHex,
-  rgbToHsl,
-  round,
-  roundColor,
-  anyToRgba,
-  brightness,
-  darken,
-  desaturate,
-  grayscale,
-  lighten,
-  negate,
-  saturate,
-  rgbToHsv,
-} from './helpers';
+
+import { brightness } from './helpers/analysis/brightness';
+import { alphaToHex, rgbToHex } from './helpers/converters/hex';
+import { rgbToHsl } from './helpers/converters/hsl';
+import { rgbToHsv } from './helpers/converters/hsv';
+import { anyToRgba } from './helpers/manipulation/anyToRgba';
+import { darken } from './helpers/manipulation/darken';
+import { desaturate } from './helpers/manipulation/desaturate';
+import { grayscale } from './helpers/manipulation/grayscale';
+import { lighten } from './helpers/manipulation/lighten';
+import { negate } from './helpers/manipulation/negate';
+import { saturate } from './helpers/manipulation/saturate';
+import { round, roundColor } from './helpers/utils';
 
 export class Colorblender {
   readonly _internalValid: boolean;
@@ -55,7 +53,9 @@ export class Colorblender {
     return Math.min(1, Math.max(0, ratio));
   }
 
-  public _withAlpha(color: ColorWithoutAlpha): ColorWithAlpha {
+  public _withAlpha(
+    color: RgbColor | HslColor | HwbColor,
+  ): RgbaColor | HslaColor | HwbaColor {
     return {
       ...color,
       a: this._internalAlpha,

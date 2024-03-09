@@ -49,9 +49,24 @@ colorblender({ h: 360, s: 100, l: 100, a: 1 });
 // HSV
 colorblender({ h: 360, s: 100, v: 100 });
 colorblender({ h: 360, s: 100, v: 100, a: 1 });
-// HWB (with extension @colorblender/mix)
+// HWB (with extension hwb)
 colorblender({ h: 0, s: 0, i: 1 });
 colorblender({ h: 0, s: 0, i: 1, a: 1 });
+// HCG (with extension hcg)
+colorblender({ h: 0, c: 0, g: 100 });
+colorblender({ h: 0, c: 0, g: 100, a: 1 });
+// CMYK (with extension cmyk)
+colorblender({ c: 0, m: 0, y: 0, k: 0 });
+colorblender({ c: 0, m: 0, y: 0, k: 0, a: 1 });
+// XYZ (with extension xyz)
+colorblender({ x: 95, y: 100, z: 108.9 });
+colorblender({ x: 95, y: 100, z: 108.9, a: 1 });
+// LAB (with extension lab)
+colorblender({ l: 100, a: 0, b: 0 });
+colorblender({ l: 100, a: 0, b: 0, alpha: 1 }); // for lab, you need to use alpha instead of a
+// LCH (with extension lch)
+colorblender({ l: 100, c: 0, h: 0 });
+colorblender({ l: 100, c: 0, h: 0, a: 1 });
 ```
 
 ### Methods
@@ -110,12 +125,67 @@ colorblender({ r: 167, g: 40, b: 13 }).hsv(true); // { h: 10.519480519480492, s:
 </details>
 
 <details>
-<summary><b><code>.hwb(raw = false)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/hwb"><b>@colorblender/hwb</b></a></summary><br>
+<summary><b><code>.hwb(raw = false)</code></b> extension <b>hwb</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).hwb(); // { h: 11, w: 5, b: 35, a: 1 }
 colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).hwb(); // { h: 11, w: 5, b: 35, a: 0.5 }
 colorblender({ r: 167, g: 40, b: 13 }).hwb(true); // { h: 10.51948051948052, w: 5.098039215686274, b: 34.509803921568626, , a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.hcg(raw = false)</code></b> extension <b>hcg</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).hcg(); // { h: 11, c: 60, g: 13, a: 1 }
+colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).hcg(); // { h: 11, c: 60, g: 13, a: 0.5 }
+colorblender({ r: 167, g: 40, b: 13 }).hcg(true); // { h: 10.519480519480519, c: 60.3921568627451, g: 12.871287128712869, , a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.cmyk(raw = false)</code></b> extension <b>cmyk</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).cmyk(); // { c: 0, m: 76, y: 92, k: 35, a: 1 }
+colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).cmyk(); // { c: 0, m: 76, y: 92, k: 35, a: 0.5 }
+colorblender({ r: 167, g: 40, b: 13 }).cmyk(true); // { c: 0, m: 76.04790419161677, y: 92.21556886227545, k: 34.509803921568626, , a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.xyz(raw = false)</code></b> extension <b>xyz</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).xyz(); // { x: 17, y: 10, z: 1, a: 1 }
+colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).xyz(); // { x: 17, y: 10, z: 1, a: 0.5 }
+colorblender({ r: 167, g: 40, b: 13 }).xyz(true); // { x: 16.769891396698043, y: 9.764837423188144, z: 1.382502939864886, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.lab(raw = false)</code></b> extension <b>lab</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).lab(); // { l: 37, a: 50, b: 45, alpha: 1 }
+colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).lab(); // { l: 37, a: 50, b: 45, alpha: 0.5 }
+colorblender({ r: 167, g: 40, b: 13 }).lab(true); // { l: 37.41702066350787, a: 50.19034131619138, b: 45.43968063599927, alpha: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.lch(raw = false)</code></b> extension <b>lch</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).lch(); // { l: 37, c: 68, h: 42, a: 1 }
+colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).lch(); // { l: 37, c: 68, h: 42, a: 0.5 }
+colorblender({ r: 167, g: 40, b: 13 }).lch(true); // { l: 37.41702066350787, c: 67.70402453131862, h: 42.156026720919115, a: 1 }
 ```
 
 </details>
@@ -234,7 +304,7 @@ colorblender({ r: 167, g: 40, b: 13 }).rotate(20).hue(); // 31
 </details>
 
 <details>
-<summary><b><code>.whiten(ratio: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/hwb"><b>@colorblender/hwb</b></a></summary><br>
+<summary><b><code>.whiten(ratio: number)</code></b> extension <b>hwb</b></summary><br>
 
 `ratio` is between 0 and 1.
 
@@ -245,7 +315,7 @@ colorblender({ r: 167, g: 40, b: 13 }).whiten(0.2).rgb(); // { r: 167, b: 16, g:
 </details>
 
 <details>
-<summary><b><code>.blacken(ratio: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/hwb"><b>@colorblender/hwb</b></a></summary><br>
+<summary><b><code>.blacken(ratio: number)</code></b> extension <b>hwb</b></summary><br>
 
 `ratio` is between 0 and 1.
 
@@ -256,7 +326,7 @@ colorblender({ r: 167, g: 40, b: 13 }).blacken(0.2).rgb(); // { r: 149, b: 13, g
 </details>
 
 <details>
-<summary><b><code>.mix(color: AnyColor | Colorblender, weight = 0.5)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+<summary><b><code>.mix(color: AnyColor | Colorblender, weight = 0.5)</code></b> extension <b>mix</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 })
@@ -267,7 +337,7 @@ colorblender({ r: 167, g: 40, b: 13 })
 </details>
 
 <details>
-<summary><b><code>.mixPalette(color: AnyColor | Colorblender, amount: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+<summary><b><code>.mixPalette(color: AnyColor | Colorblender, amount: number)</code></b> extension <b>mix</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 })
@@ -285,7 +355,7 @@ colorblender({ r: 167, g: 40, b: 13 })
 </details>
 
 <details>
-<summary><b><code>.tints(amount: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+<summary><b><code>.tints(amount: number)</code></b> extension <b>mix</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 })
@@ -303,7 +373,7 @@ colorblender({ r: 167, g: 40, b: 13 })
 </details>
 
 <details>
-<summary><b><code>.shades(amount: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+<summary><b><code>.shades(amount: number)</code></b> extension <b>mix</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 })
@@ -321,7 +391,7 @@ colorblender({ r: 167, g: 40, b: 13 })
 </details>
 
 <details>
-<summary><b><code>.tones(amount: number)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/mix"><b>@colorblender/mix</b></a></summary><br>
+<summary><b><code>.tones(amount: number)</code></b> extension <b>mix</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 })
@@ -339,7 +409,7 @@ colorblender({ r: 167, g: 40, b: 13 })
 </details>
 
 <details>
-<summary><b><code>.harmonies(type: HarmonyType)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/harmony"><b>@colorblender/harmony</b></a></summary><br>
+<summary><b><code>.harmonies(type: HarmonyType)</code></b> extension <b>harmony</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 })
@@ -445,7 +515,7 @@ colorblender({ r: 167, g: 40, b: 13 }).hue(); // 11
 </details>
 
 <details>
-<summary><b><code>.luminosity()</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/a11y"><b>@colorblender/a11y</b></a></summary><br>
+<summary><b><code>.luminosity()</code></b> extension <b>a11y</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).luminosity(); // 0.0976213184127798
@@ -454,7 +524,7 @@ colorblender({ r: 167, g: 40, b: 13 }).luminosity(); // 0.0976213184127798
 </details>
 
 <details>
-<summary><b><code>.contrast(color: AnyColor | Colorblender)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/a11y"><b>@colorblender/a11y</b></a></summary><br>
+<summary><b><code>.contrast(color: AnyColor | Colorblender)</code></b> extension <b>a11y</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).contrast({ r: 28, g: 252, b: 185 }); // 5.308885390786212
@@ -463,7 +533,7 @@ colorblender({ r: 167, g: 40, b: 13 }).contrast({ r: 28, g: 252, b: 185 }); // 5
 </details>
 
 <details>
-<summary><b><code>.isReadable(color: AnyColor | Colorblender, options: ReadabilityOptions)</code></b> extension <a href="https://www.npmjs.com/package/@colorblender/a11y"><b>@colorblender/a11y</b></a></summary><br>
+<summary><b><code>.isReadable(color: AnyColor | Colorblender, options: ReadabilityOptions)</code></b> extension <b>a11y</b></summary><br>
 
 ```typescript
 interface ReadabilityOptions {
@@ -490,18 +560,23 @@ colorblender({ r: 167, g: 40, b: 13 }).isReadable(
 <summary><b><code>extend(extensions: Extension[])</code></b></summary><br>
 
 ```typescript
-import { hwbExtension } from '@colorblender/hwb';
-import { mixExtension } from '@colorblender/mix';
+import { hwbExtension } from 'colorblender/extensions/hwb';
+import { mixExtension } from 'colorblender/extensions/mix';
 
 extend([hwbExtension, mixExtension]);
 ```
 
 </details>
 
-- [@colorblender/hwb](https://www.npmjs.com/package/@colorblender/hwb)
-- [@colorblender/mix](https://www.npmjs.com/package/@colorblender/mix)
-- [@colorblender/a11y](https://www.npmjs.com/package/@colorblender/a11y)
-- [@colorblender/harmony](https://www.npmjs.com/package/@colorblender/harmony)
+- **hwb** - HWB color model
+- **hcg** - HCG color model
+- **cmyk** - CMYK color model
+- **xyz** - XYZ color model
+- **lab** - LAB color model
+- **lch** - LCH color model
+- **mix** - Mix colors and create palettes
+- **a11y** - Accessibility analysis
+- **harmony** - Color harmonies
 
 ## Issues
 
@@ -513,4 +588,6 @@ Please file an issue for bugs, missing documentation, or unexpected behavior.
 
 MIT
 
-The API was inspired by color and colord libraries.
+## Credits
+
+The API was inspired by [color](https://www.npmjs.com/package/color) and [colord](https://www.npmjs.com/package/colord) libraries.

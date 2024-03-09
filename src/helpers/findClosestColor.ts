@@ -1,5 +1,6 @@
 import type { ColorObject, HexColor } from '../types';
-import { hexToRgb } from './converters';
+
+import { hexToRgb } from './converters/hex';
 import { colorDistance } from './utils';
 
 export const findClosestColor = (

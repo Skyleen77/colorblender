@@ -1,6 +1,6 @@
 {
   "name": "colorblender",
-  "version": "1.1.10",
+  "version": "2.0.0",
   "description": "A powerful and fully typed color library.",
   "repository": {
     "type": "git",
@@ -10,10 +10,28 @@
     "url": "https://github.com/Skyleen77/colorblender/issues"
   },
   "homepage": "https://github.com/Skyleen77/colorblender.git#README.md",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js",
+      "default": "./index.mjs"
+    },
+    "./extensions/a11y": {
+      "types": "./extensions/a11y.d.ts",
+      "import": "./extensions/a11y.mjs",
+      "require": "./extensions/a11y.js",
+      "default": "./extensions/a11y.mjs"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
-    "dist"
+    "*.{js,mjs,ts,map}",
+    "extensions/*.{js,mjs,ts,map}"
   ],
   "husky": {
     "hooks": {
@@ -21,14 +39,15 @@
     }
   },
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "rm -rf ./dist/* && rollup -c --bundleConfigAsCjs",
     "start": "rollup -c -w --bundleConfigAsCjs",
     "index": "nodemon dist/index.js",
     "testfile": "tsx ./src/testfile.ts",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "dev": "concurrently \"npm run start\" \"npm run test:watch\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prepublishOnly": "rm -f dist/package.json dist/README.md && cp package.json dist/ && cp README.md dist/"
   },
   "keywords": [
     "color",

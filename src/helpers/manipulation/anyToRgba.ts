@@ -1,14 +1,25 @@
 import type { AnyColor, RgbaColor, RgbColor } from '../../types';
-import { converters, hexToRgb } from '../converters';
+
+import { converters } from '../converters/converters';
+import { hexToRgb } from '../converters/hex';
 
 const convertToRgba = (
   color: object,
   convertFunc: (color: object) => RgbColor,
 ): RgbaColor | null => {
-  let alpha = 'a' in color ? (color as any).a : 1;
+  if ('alpha' in color) {
+    console.log('color', color);
+  }
+  let alpha = (
+    'alpha' in color ? color.alpha : 'a' in color ? color.a : 1
+  ) as number;
+  if ('alpha' in color) {
+    console.log('alpha', alpha);
+  }
   if (alpha < 0) alpha = 0;
   if (alpha > 1) alpha = 1;
   const rgb = convertFunc(color);
+
   return { ...rgb, a: alpha };
 };
 

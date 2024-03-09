@@ -82,7 +82,7 @@ export type HsiaColor = WithAlpha<HsiColor>;
 export type HwbaColor = WithAlpha<HwbColor>;
 export type HcgaColor = WithAlpha<HcgColor>;
 export type XyzaColor = WithAlpha<XyzColor>;
-export type LabaColor = WithAlpha<LabColor>;
+export type LabaColor = LabColor & { alpha: number };
 export type LchaColor = WithAlpha<LchColor>;
 export type CmykaColor = WithAlpha<CmykColor>;
 
