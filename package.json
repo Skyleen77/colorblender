@@ -1,6 +1,6 @@
 {
   "name": "colorblender",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A powerful and fully typed color library.",
   "repository": {
     "type": "git",
@@ -27,6 +27,54 @@
       "require": "./extensions/a11y.js",
       "default": "./extensions/a11y.mjs"
     },
+    "./extensions/cmyk": {
+      "types": "./extensions/cmyk.d.ts",
+      "import": "./extensions/cmyk.mjs",
+      "require": "./extensions/cmyk.js",
+      "default": "./extensions/cmyk.mjs"
+    },
+    "./extensions/harmony": {
+      "types": "./extensions/harmony.d.ts",
+      "import": "./extensions/harmony.mjs",
+      "require": "./extensions/harmony.js",
+      "default": "./extensions/harmony.mjs"
+    },
+    "./extensions/hcg": {
+      "types": "./extensions/hcg.d.ts",
+      "import": "./extensions/hcg.mjs",
+      "require": "./extensions/hcg.js",
+      "default": "./extensions/hcg.mjs"
+    },
+    "./extensions/hwb": {
+      "types": "./extensions/hwb.d.ts",
+      "import": "./extensions/hwb.mjs",
+      "require": "./extensions/hwb.js",
+      "default": "./extensions/hwb.mjs"
+    },
+    "./extensions/lab": {
+      "types": "./extensions/lab.d.ts",
+      "import": "./extensions/lab.mjs",
+      "require": "./extensions/lab.js",
+      "default": "./extensions/lab.mjs"
+    },
+    "./extensions/lch": {
+      "types": "./extensions/lch.d.ts",
+      "import": "./extensions/lch.mjs",
+      "require": "./extensions/lch.js",
+      "default": "./extensions/lch.mjs"
+    },
+    "./extensions/mix": {
+      "types": "./extensions/mix.d.ts",
+      "import": "./extensions/mix.mjs",
+      "require": "./extensions/mix.js",
+      "default": "./extensions/mix.mjs"
+    },
+    "./extensions/xyz": {
+      "types": "./extensions/xyz.d.ts",
+      "import": "./extensions/xyz.mjs",
+      "require": "./extensions/xyz.js",
+      "default": "./extensions/xyz.mjs"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -47,7 +95,7 @@
     "test:watch": "jest --watchAll",
     "dev": "concurrently \"npm run start\" \"npm run test:watch\"",
     "prepare": "husky",
-    "prepublishOnly": "rm -f dist/package.json dist/README.md && cp package.json dist/ && cp README.md dist/"
+    "prepublish": "rm -f dist/package.json dist/README.md && cp package.json dist/ && cp README.md dist/"
   },
   "keywords": [
     "color",
