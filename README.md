@@ -568,15 +568,15 @@ extend([hwbExtension, mixExtension]);
 
 </details>
 
-- **hwb** - HWB color model
-- **hcg** - HCG color model
-- **cmyk** - CMYK color model
-- **xyz** - XYZ color model
-- **lab** - LAB color model
-- **lch** - LCH color model
-- **mix** - Mix colors and create palettes
-- **a11y** - Accessibility analysis
-- **harmony** - Color harmonies
+- **hwb** - HWB color model _0.86kb_
+- **hcg** - HCG color model _0.68kb_
+- **cmyk** - CMYK color model _0.5kb_
+- **xyz** - XYZ color model _0.72kb_
+- **lab** - LAB color model _1.1kb_
+- **lch** - LCH color model _1.1kb_
+- **mix** - Mix colors and create palettes _0.52kb_
+- **a11y** - Accessibility analysis _0.48kb_
+- **harmony** - Color harmonies _0.34kb_
 
 ## Issues
 
