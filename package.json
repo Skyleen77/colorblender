@@ -1,6 +1,6 @@
 {
   "name": "colorblender",
-  "version": "2.2.1",
+  "version": "2.3.1",
   "description": "A powerful and fully typed color library.",
   "repository": {
     "type": "git",
@@ -27,6 +27,18 @@
       "require": "./extensions/a11y.js",
       "default": "./extensions/a11y.mjs"
     },
+    "./extensions/ansi": {
+      "types": "./extensions/ansi.d.ts",
+      "import": "./extensions/ansi.mjs",
+      "require": "./extensions/ansi.js",
+      "default": "./extensions/ansi.mjs"
+    },
+    "./extensions/apple": {
+      "types": "./extensions/apple.d.ts",
+      "import": "./extensions/apple.mjs",
+      "require": "./extensions/apple.js",
+      "default": "./extensions/apple.mjs"
+    },
     "./extensions/cmyk": {
       "types": "./extensions/cmyk.d.ts",
       "import": "./extensions/cmyk.mjs",
@@ -50,6 +62,12 @@
       "import": "./extensions/hwb.mjs",
       "require": "./extensions/hwb.js",
       "default": "./extensions/hwb.mjs"
+    },
+    "./extensions/hks": {
+      "types": "./extensions/hks.d.ts",
+      "import": "./extensions/hks.mjs",
+      "require": "./extensions/hks.js",
+      "default": "./extensions/hks.mjs"
     },
     "./extensions/keyword": {
       "types": "./extensions/keyword.d.ts",
@@ -80,6 +98,12 @@
       "import": "./extensions/mix.mjs",
       "require": "./extensions/mix.js",
       "default": "./extensions/mix.mjs"
+    },
+    "./extensions/ral": {
+      "types": "./extensions/ral.d.ts",
+      "import": "./extensions/ral.mjs",
+      "require": "./extensions/ral.js",
+      "default": "./extensions/ral.mjs"
     },
     "./extensions/xyz": {
       "types": "./extensions/xyz.d.ts",

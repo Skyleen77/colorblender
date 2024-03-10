@@ -74,6 +74,14 @@ describe('colorblender', () => {
     expect(color1.hsv()).toStrictEqual({ h: 11, s: 92, v: 65, a: 1 });
   });
 
+  it('should converts color to Gray correctly', () => {
+    expect(color1.gray()).toStrictEqual({ gray: 29 });
+  });
+
+  it('should create color correctly with Gray entry', () => {
+    expect(colorblender({ gray: 29 }).hex()).toStrictEqual('#4A4A4A');
+  });
+
   it('should return the alpha', () => {
     expect(color1.alpha()).toBe(1);
   });

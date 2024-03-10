@@ -8,6 +8,7 @@ import type {
   HslColor,
   HwbaColor,
   HwbColor,
+  GrayColor,
 } from './types';
 
 import { brightness } from './helpers/analysis/brightness';
@@ -22,6 +23,7 @@ import { lighten } from './helpers/manipulation/lighten';
 import { negate } from './helpers/manipulation/negate';
 import { saturate } from './helpers/manipulation/saturate';
 import { round, roundColor } from './helpers/utils';
+import { rgbToGray } from './helpers/converters/gray';
 
 export class Colorblender {
   readonly _internalValid: boolean;
@@ -113,6 +115,17 @@ export class Colorblender {
    */
   public hsv(raw = false): HsvaColor {
     return this._getColorFormat(rgbToHsv, raw) as HsvaColor;
+  }
+
+  /**
+   * @returns the color in the Gray format.
+   */
+  public gray(raw = false): GrayColor {
+    return {
+      ...(raw
+        ? rgbToGray(this._internalRgb)
+        : roundColor(rgbToGray(this._internalRgb))),
+    };
   }
 
   /**

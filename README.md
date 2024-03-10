@@ -9,7 +9,7 @@
 ## Features
 
 - **Fully typed** - Written in TypeScript
-- **Tiny** - Less than 3kb gzipped
+- **Tiny** - Less than 3kb gzipped (without plugins)
 - **Fast** - 3x faster than the most popular color library
 - **Simple** - Chainable methods
 - **Complete** - Supports a lot of color models
@@ -49,6 +49,8 @@ colorblender({ h: 360, s: 100, l: 100, a: 1 });
 // HSV
 colorblender({ h: 360, s: 100, v: 100 });
 colorblender({ h: 360, s: 100, v: 100, a: 1 });
+// Gray
+colorblender({ gray: 100 });
 // HWB (with extension hwb)
 colorblender({ h: 0, s: 0, i: 1 });
 colorblender({ h: 0, s: 0, i: 1, a: 1 });
@@ -67,6 +69,14 @@ colorblender({ l: 100, a: 0, b: 0, alpha: 1 }); // for lab, you need to use alph
 // LCH (with extension lch)
 colorblender({ l: 100, c: 0, h: 0 });
 colorblender({ l: 100, c: 0, h: 0, a: 1 });
+// Ansi16 (with extension ansi)
+colorblender({ ansi16: 97 });
+// Ansi256 (with extension ansi)
+colorblender({ ansi256: 231 });
+// RAL (with extension ral)
+colorblender('9010');
+// HKS (with extension hks)
+colorblender('81-K');
 // Name (with extension name)
 colorblender('White');
 // Keyword (with extension keyword)
@@ -124,6 +134,15 @@ colorblender({ r: 167, g: 40, b: 13 }).hsv(true); // { h: 10.51948051948052, s: 
 colorblender('#FFF').hsv(); // { h: 0, s: 0, v: 100, a: 1 }
 colorblender('#FFFFFF80').hsv(); // { h: 0, s: 0, v: 100, a: 0.5 }
 colorblender({ r: 167, g: 40, b: 13 }).hsv(true); // { h: 10.519480519480492, s: 92.21556886227545, v: 65.49019607843137, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.gray(raw = false)</code></b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).gray(); // { gray: 29 }
 ```
 
 </details>
@@ -190,6 +209,51 @@ colorblender({ r: 167, g: 40, b: 13 }).lab(true); // { l: 37.41702066350787, a: 
 colorblender({ r: 167, g: 40, b: 13 }).lch(); // { l: 37, c: 68, h: 42, a: 1 }
 colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).lch(); // { l: 37, c: 68, h: 42, a: 0.5 }
 colorblender({ r: 167, g: 40, b: 13 }).lch(true); // { l: 37.41702066350787, c: 67.70402453131862, h: 42.156026720919115, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.ansi16()</code></b> extension <b>ansi</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).ansi16(); // { ansi16: 31 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.ansi256()</code></b> extension <b>ansi</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).ansi256(); // { ansi256: 130 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.apple(raw = false)</code></b> extension <b>apple</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).apple(); // { r: 42919, g: 10280, b: 3341, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.ral()</code></b> extension <b>ral</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).ral(); // "3013"
+```
+
+</details>
+
+<details>
+<summary><b><code>.hks()</code></b> extension <b>hks</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).hks(); // "82-K"
 ```
 
 </details>
@@ -601,6 +665,10 @@ extend([hwbExtension, mixExtension]);
 - **mix** - Mix colors and create palettes _0.52kb_
 - **a11y** - Accessibility analysis _0.48kb_
 - **harmony** - Color harmonies _0.34kb_
+- **ansi** - ANSI color models _1.48kb_
+- **apple** - APPLE color models _0.4kb_
+- **ral** - RAL color models _4.13kb_
+- **hks** - HKS color models _6.12kb_
 
 ## Issues
 
