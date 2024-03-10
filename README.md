@@ -67,6 +67,10 @@ colorblender({ l: 100, a: 0, b: 0, alpha: 1 }); // for lab, you need to use alph
 // LCH (with extension lch)
 colorblender({ l: 100, c: 0, h: 0 });
 colorblender({ l: 100, c: 0, h: 0, a: 1 });
+// Name (with extension name)
+colorblender('White');
+// Keyword (with extension keyword)
+colorblender('white');
 ```
 
 ### Methods
@@ -186,6 +190,24 @@ colorblender({ r: 167, g: 40, b: 13 }).lab(true); // { l: 37.41702066350787, a: 
 colorblender({ r: 167, g: 40, b: 13 }).lch(); // { l: 37, c: 68, h: 42, a: 1 }
 colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).lch(); // { l: 37, c: 68, h: 42, a: 0.5 }
 colorblender({ r: 167, g: 40, b: 13 }).lch(true); // { l: 37.41702066350787, c: 67.70402453131862, h: 42.156026720919115, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.name()</code></b> extension <b>name</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).name(); // Tabasco
+```
+
+</details>
+
+<details>
+<summary><b><code>.keyword()</code></b> extension <b>keyword</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).keyword(); // firebrick
 ```
 
 </details>
@@ -572,8 +594,10 @@ extend([hwbExtension, mixExtension]);
 - **hcg** - HCG color model _0.68kb_
 - **cmyk** - CMYK color model _0.5kb_
 - **xyz** - XYZ color model _0.72kb_
+- **keyword** - Color to keyword (148 keywords) _3.97kb_
 - **lab** - LAB color model _1.1kb_
 - **lch** - LCH color model _1.1kb_
+- **name** - Color to name (1566 names) _32.3kb_
 - **mix** - Mix colors and create palettes _0.52kb_
 - **a11y** - Accessibility analysis _0.48kb_
 - **harmony** - Color harmonies _0.34kb_

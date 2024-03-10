@@ -113,6 +113,6 @@ export type ColorWithAlpha =
 export type AnyColor = HexColor | ColorWithoutAlpha | ColorWithAlpha;
 
 export interface Converter {
-  format: string[];
+  format: string[] | 'NAME' | 'KEYWORD';
   converter: (color: Omit<AnyColor, string>) => RgbColor;
 }

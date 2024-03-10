@@ -1,6 +1,6 @@
 {
   "name": "colorblender",
-  "version": "2.0.2",
+  "version": "2.2.1",
   "description": "A powerful and fully typed color library.",
   "repository": {
     "type": "git",
@@ -51,6 +51,12 @@
       "require": "./extensions/hwb.js",
       "default": "./extensions/hwb.mjs"
     },
+    "./extensions/keyword": {
+      "types": "./extensions/keyword.d.ts",
+      "import": "./extensions/keyword.mjs",
+      "require": "./extensions/keyword.js",
+      "default": "./extensions/keyword.mjs"
+    },
     "./extensions/lab": {
       "types": "./extensions/lab.d.ts",
       "import": "./extensions/lab.mjs",
@@ -62,6 +68,12 @@
       "import": "./extensions/lch.mjs",
       "require": "./extensions/lch.js",
       "default": "./extensions/lch.mjs"
+    },
+    "./extensions/name": {
+      "types": "./extensions/name.d.ts",
+      "import": "./extensions/name.mjs",
+      "require": "./extensions/name.js",
+      "default": "./extensions/name.mjs"
     },
     "./extensions/mix": {
       "types": "./extensions/mix.d.ts",
