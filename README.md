@@ -500,31 +500,31 @@ colorblender({ r: 167, g: 40, b: 13 })
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 })
   .harmonies('analogous')
-  .map((c) => c.hex()); // ['#A70D3E', '#A7290D', '#A7760D']
+  .map((c) => c.hex()); // ['#A70D3F', '#A7280D', '#A7750D']
 
 colorblender({ r: 167, g: 40, b: 13 })
   .harmonies('complementary')
-  .map((c) => c.hex()); // ['#A7290D', '#0D8BA7']
+  .map((c) => c.hex()); // ['#A7280D', '#0D8CA7']
 
 colorblender({ r: 167, g: 40, b: 13 })
   .harmonies('split-complementary')
-  .map((c) => c.hex()); // ['#A7290D', '#0DA776', '#0D3EA7']
+  .map((c) => c.hex()); // ['#A7280D', '#0DA775', '#0D3FA7']
 
 colorblender({ r: 167, g: 40, b: 13 })
   .harmonies('double-split-complementary')
-  .map((c) => c.hex()); // ['#A70D3E', '#A7290D', '#A7760D', '#0DA776', '#0D3EA7']
+  .map((c) => c.hex()); // ['#A70D3F', '#A7280D', '#A7750D', '#0DA775', '#0D3FA7']
 
 colorblender({ r: 167, g: 40, b: 13 })
   .harmonies('tetradic')
-  .map((c) => c.hex()); // ['#A7290D', '#3EA70D', '#0D8BA7', '#760DA7']
+  .map((c) => c.hex()); // ['#A7280D', '#3FA70D', '#0D8CA7', '#750DA7']
 
 colorblender({ r: 167, g: 40, b: 13 })
   .harmonies('triadic')
-  .map((c) => c.hex()); // ['#A7290D', '#0DA729', '#290DA7']
+  .map((c) => c.hex()); // ['#A7280D', '#0DA728', '#280DA7']
 
 colorblender({ r: 167, g: 40, b: 13 })
   .harmonies('rectangle')
-  .map((c) => c.hex()); // ['#A7290D', '#8BA70D', '#0D8BA7', '#290DA7']
+  .map((c) => c.hex()); // ['#A7280D', '#8CA70D', '#0D8CA7', '#280DA7']
 ```
 
 </details>

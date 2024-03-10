@@ -51,10 +51,6 @@ export class Colorblender {
     }
   }
 
-  public _clampRatio(ratio: number): number {
-    return Math.min(1, Math.max(0, ratio));
-  }
-
   public _withAlpha(
     color: RgbColor | HslColor | HwbColor,
   ): RgbaColor | HslaColor | HwbaColor {
@@ -209,56 +205,50 @@ export class Colorblender {
 
   /**
    *
-   * @param ratio The ratio to lighten the color (between 0 and 1).
+   * @param ratio The ratio to lighten the color.
    * @returns The color lightened.
    */
   public lighten(ratio: number): Colorblender {
-    ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(lighten(this._internalRgb, ratio)));
   }
 
   /**
-   * @param ratio The ratio to darken the color (between 0 and 1).
+   * @param ratio The ratio to darken the color.
    * @returns The color darkened.
    */
   public darken(ratio: number): Colorblender {
-    ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(darken(this._internalRgb, ratio)));
   }
 
   /**
-   * @param ratio The ratio to saturate the color (between 0 and 1).
+   * @param ratio The ratio to saturate the color.
    * @returns The color saturated.
    */
   public saturate(ratio: number): Colorblender {
-    ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(saturate(this._internalRgb, ratio)));
   }
 
   /**
-   * @param ratio The ratio to desaturate the color (between 0 and 1).
+   * @param ratio The ratio to desaturate the color.
    * @returns The color desaturated.
    */
   public desaturate(ratio: number): Colorblender {
-    ratio = this._clampRatio(ratio);
     return colorblender(this._withAlpha(desaturate(this._internalRgb, ratio)));
   }
 
   /**
-   * @param ratio The ratio to fade the color (between 0 and 1).
+   * @param ratio The ratio to fade the color.
    * @returns The color faded.
    */
   public fade(ratio: number): Colorblender {
-    ratio = this._clampRatio(ratio);
     return this.alpha(this._internalAlpha - this._internalAlpha * ratio);
   }
 
   /**
-   * @param ratio The ratio to opaquer the color (between 0 and 1).
+   * @param ratio The ratio to opaquer the color.
    * @returns The color opaqued.
    */
   public opaquer(ratio: number): Colorblender {
-    ratio = this._clampRatio(ratio);
     return this.alpha(this._internalAlpha + this._internalAlpha * ratio);
   }
 
@@ -270,11 +260,20 @@ export class Colorblender {
   }
 
   /**
-   * @param amount The amount to rotate the color (between 0 and 360).
+   * @param amount The amount to rotate the color.
    * @returns The color rotated.
    */
   public rotate(amount = 15): Colorblender {
-    return this.hue(this.hue() + amount);
+    const hsl = rgbToHsl(this._internalRgb);
+    let newHue = hsl.h + amount;
+    newHue = newHue % 360;
+    if (newHue < 0) newHue += 360;
+    return colorblender({
+      h: newHue,
+      s: hsl.s,
+      l: hsl.l,
+      a: this._internalAlpha,
+    });
   }
 }
 

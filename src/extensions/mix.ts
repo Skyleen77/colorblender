@@ -26,7 +26,7 @@ const mixExtension: Extensions = (Class): void => {
   ): Colorblender {
     let mixed;
 
-    weight = this._clampRatio(weight);
+    weight = Math.min(1, Math.max(0, weight));
 
     if (color instanceof Class) {
       mixed = mix(color.rgb(), this.rgb(), weight);

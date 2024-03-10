@@ -1,6 +1,6 @@
 {
   "name": "colorblender",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "A powerful and fully typed color library.",
   "repository": {
     "type": "git",
@@ -125,8 +125,7 @@
   "scripts": {
     "build": "rm -rf ./dist/* && rollup -c --bundleConfigAsCjs",
     "start": "rollup -c -w --bundleConfigAsCjs",
-    "index": "nodemon dist/index.js",
-    "testfile": "tsx ./src/testfile.ts",
+    "index": "tsx ./src/colorblender.ts",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "dev": "concurrently \"npm run start\" \"npm run test:watch\"",

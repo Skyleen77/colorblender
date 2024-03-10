@@ -11,7 +11,7 @@ declare module '../colorblender' {
   }
 }
 
-const nameExtension: Extensions = (Class, converters): void => {
+const ansiExtension: Extensions = (Class, converters): void => {
   /**
    * @returns the ansi16 of the color.
    */
@@ -38,4 +38,4 @@ const nameExtension: Extensions = (Class, converters): void => {
   );
 };
 
-export default nameExtension;
+export default ansiExtension;
