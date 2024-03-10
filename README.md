@@ -693,7 +693,7 @@ extend([hwbExtension, mixExtension]);
 </details>
 
 - **hwb** - HWB color model _0.86kb_
-- **hcg** - HCG color model _0.68kb_
+- **hcg** - HCG color model _1.5kb_
 - **cmyk** - CMYK color model _0.5kb_
 - **xyz** - XYZ color model _0.72kb_
 - **keyword** - Color to keyword (148 keywords) _3.97kb_
