@@ -23,4 +23,16 @@ describe('hcg extension', () => {
       a: 1,
     });
   });
+
+  it('should negate tones of the color', () => {
+    expect(color1.negateTones().hex()).toStrictEqual('#F27358');
+  });
+
+  it('should tinten the color', () => {
+    expect(color1.tinten(0.5).hex()).toStrictEqual('#AD2F13');
+  });
+
+  it('should shaden the color', () => {
+    expect(color1.shaden(0.5).hex()).toStrictEqual('#A12206');
+  });
 });

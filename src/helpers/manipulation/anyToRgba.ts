@@ -41,6 +41,12 @@ export const anyToRgba = (color: AnyColor): RgbaColor | null => {
       if (rgb) return rgb;
     }
 
+    const hexColorRegex =
+      /^#?([A-Fa-f0-9]{3,4}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/;
+    if (!hexColorRegex.test(color)) {
+      return null;
+    }
+
     const alpha =
       color.length === 9 ? parseInt(color.slice(7, 9), 16) / 255 : 1;
     const rgbByHex = hexToRgb(color.length === 9 ? color.slice(0, 7) : color);

@@ -9,6 +9,8 @@ import type {
   HwbaColor,
   HwbColor,
   GrayColor,
+  HcgColor,
+  HcgaColor,
 } from './types';
 
 import { brightness } from './helpers/analysis/brightness';
@@ -24,6 +26,9 @@ import { negate } from './helpers/manipulation/negate';
 import { saturate } from './helpers/manipulation/saturate';
 import { round, roundColor } from './helpers/utils';
 import { rgbToGray } from './helpers/converters/gray';
+import { brighten } from './helpers/manipulation/brighten';
+import { temperature } from './helpers/manipulation/temperature';
+import { complement } from './helpers/manipulation/complement';
 
 export class Colorblender {
   readonly _internalValid: boolean;
@@ -52,8 +57,8 @@ export class Colorblender {
   }
 
   public _withAlpha(
-    color: RgbColor | HslColor | HwbColor,
-  ): RgbaColor | HslaColor | HwbaColor {
+    color: RgbColor | HslColor | HwbColor | HcgColor,
+  ): RgbaColor | HslaColor | HwbaColor | HcgaColor {
     return {
       ...color,
       a: this._internalAlpha,
@@ -204,6 +209,14 @@ export class Colorblender {
   }
 
   /**
+   * @param ratio The ratio to brighten the color.
+   * @returns The color brightened.
+   */
+  public brighten(ratio: number): Colorblender {
+    return colorblender(this._withAlpha(brighten(this._internalRgb, ratio)));
+  }
+
+  /**
    *
    * @param ratio The ratio to lighten the color.
    * @returns The color lightened.
@@ -250,6 +263,23 @@ export class Colorblender {
    */
   public opaquer(ratio: number): Colorblender {
     return this.alpha(this._internalAlpha + this._internalAlpha * ratio);
+  }
+
+  /**
+   * @param amount The amount to change the temperature.
+   * @returns The color with the temperature changed.
+   */
+  public temperature(amount: number): Colorblender {
+    return colorblender(
+      this._withAlpha(temperature(this._internalRgb, amount)),
+    );
+  }
+
+  /**
+   * @returns The complement color.
+   */
+  public complement(): Colorblender {
+    return colorblender(this._withAlpha(complement(this._internalRgb)));
   }
 
   /**

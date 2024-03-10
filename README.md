@@ -306,9 +306,16 @@ colorblender({ r: 167, g: 40, b: 13 }).negate().rgb(); // { r: 88, b: 242, g: 21
 </details>
 
 <details>
-<summary><b><code>.lighten(ratio: number)</code></b></summary><br>
+<summary><b><code>.brighten(ratio: number)</code></b></summary><br>
 
-`ratio` is between 0 and 1.
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).brighten(0.2).rgb(); // { r: 185, b: 61, g: 83, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.lighten(ratio: number)</code></b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).lighten(0.2).rgb(); // { r: 200, b: 16, g: 48, a: 1 }
@@ -319,8 +326,6 @@ colorblender({ r: 167, g: 40, b: 13 }).lighten(0.2).rgb(); // { r: 200, b: 16, g
 <details>
 <summary><b><code>.darken(ratio: number)</code></b></summary><br>
 
-`ratio` is between 0 and 1.
-
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).darken(0.2).rgb(); // { r: 134, b: 10, g: 32, a: 1 }
 ```
@@ -329,8 +334,6 @@ colorblender({ r: 167, g: 40, b: 13 }).darken(0.2).rgb(); // { r: 134, b: 10, g:
 
 <details>
 <summary><b><code>.saturate(ratio: number)</code></b></summary><br>
-
-`ratio` is between 0 and 1.
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).saturate(0.2).rgb(); // { r: 180, b: 0, g: 32, a: 1 }
@@ -341,8 +344,6 @@ colorblender({ r: 167, g: 40, b: 13 }).saturate(0.2).rgb(); // { r: 180, b: 0, g
 <details>
 <summary><b><code>.desaturate(ratio: number)</code></b></summary><br>
 
-`ratio` is between 0 and 1.
-
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).desaturate(0.2).rgb(); // { r: 152, b: 50, g: 28, a: 1 }
 ```
@@ -351,8 +352,6 @@ colorblender({ r: 167, g: 40, b: 13 }).desaturate(0.2).rgb(); // { r: 152, b: 50
 
 <details>
 <summary><b><code>.fade(ratio: number)</code></b></summary><br>
-
-`ratio` is between 0 and 1.
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13, a: 1 }).fade(0.2).alpha(); // 0.8
@@ -363,10 +362,26 @@ colorblender({ r: 167, g: 40, b: 13, a: 1 }).fade(0.2).alpha(); // 0.8
 <details>
 <summary><b><code>.opaquer(ratio: number)</code></b></summary><br>
 
-`ratio` is between 0 and 1.
-
 ```typescript
 colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).opaquer(0.2).alpha(); // 0.6
+```
+
+</details>
+
+<details>
+<summary><b><code>.temperature()</code></b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).temperature(-30).rgb(); // { r: 121, b: 59, g: 32, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.complement()</code></b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).complement().hex(); // #0D8CA7
 ```
 
 </details>
@@ -392,8 +407,6 @@ colorblender({ r: 167, g: 40, b: 13 }).rotate(20).hue(); // 31
 <details>
 <summary><b><code>.whiten(ratio: number)</code></b> extension <b>hwb</b></summary><br>
 
-`ratio` is between 0 and 1.
-
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).whiten(0.2).rgb(); // { r: 167, b: 16, g: 42 }
 ```
@@ -403,10 +416,35 @@ colorblender({ r: 167, g: 40, b: 13 }).whiten(0.2).rgb(); // { r: 167, b: 16, g:
 <details>
 <summary><b><code>.blacken(ratio: number)</code></b> extension <b>hwb</b></summary><br>
 
-`ratio` is between 0 and 1.
-
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).blacken(0.2).rgb(); // { r: 149, b: 13, g: 37 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.tinten(ratio: number)</code></b> extension <b>hcg</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).tinten(0.5).hex(); // #AD2F13
+```
+
+</details>
+
+<details>
+<summary><b><code>.shaden(ratio: number)</code></b> extension <b>hcg</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).shaden(0.5).hex(); // #A12206
+```
+
+</details>
+
+<details>
+<summary><b><code>.negateTones()</code></b> extension <b>hcg</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).negateTones().hex(); // #F27358
 ```
 
 </details>

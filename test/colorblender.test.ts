@@ -13,8 +13,7 @@ describe('colorblender', () => {
   });
 
   it('should verify if color is not valid', () => {
-    // @ts-ignore
-    expect(colorblender({ r: 167, g: 40, c: 13 }).isValid()).toBe(false);
+    expect(colorblender('#ZZZZZZZZZ').isValid()).toBe(false);
   });
 
   it('should verify if color is dark', () => {
@@ -107,6 +106,15 @@ describe('colorblender', () => {
     });
   });
 
+  it('should brighten the color', () => {
+    expect(color1.brighten(0.2).rgb()).toStrictEqual({
+      r: 185,
+      b: 61,
+      g: 83,
+      a: 1,
+    });
+  });
+
   it('should lighten the color', () => {
     expect(color1.lighten(0.2).rgb()).toStrictEqual({
       r: 200,
@@ -141,6 +149,19 @@ describe('colorblender', () => {
       b: 28,
       a: 1,
     });
+  });
+
+  it('should temperature the color', () => {
+    expect(color1.temperature(-30).rgb()).toStrictEqual({
+      r: 121,
+      b: 59,
+      g: 32,
+      a: 1,
+    });
+  });
+
+  it('should complement the color', () => {
+    expect(color1.complement().hex()).toStrictEqual('#0D8CA7');
   });
 
   it('should grayscale the color', () => {
