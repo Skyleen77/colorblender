@@ -1,4 +1,9 @@
-import type { LchColor, RgbColor } from '../../types';
+import type {
+  LchColor,
+  RgbColor,
+  RgbaColor,
+  ToStringFormat,
+} from '../../types';
 
 import { rgbToLab, labToRgb } from './lab';
 import { roundColor } from '../utils';
@@ -34,4 +39,18 @@ export const lchToRgb = (lch: LchColor, rounded?: boolean): RgbColor => {
   const rgb = labToRgb(lab);
 
   return rounded ? roundColor(rgb) : rgb;
+};
+
+export const lchToString = (rgba: RgbaColor, format: ToStringFormat) => {
+  const { a, ...rgb } = rgba;
+  const { l, c, h } = rgbToLch(rgb, true);
+
+  if (format === 'css') {
+    if (a < 1) {
+      return `lch(${l}% ${c} ${h} / ${a})`;
+    }
+    return `lch(${l}% ${c} ${h})`;
+  }
+
+  return `${l}%, ${c}, ${h}${a < 1 ? `, ${a}` : ''}`;
 };

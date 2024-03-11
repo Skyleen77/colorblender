@@ -11,12 +11,13 @@ import type {
   GrayColor,
   HcgColor,
   HcgaColor,
+  ToStringFormat,
 } from './types';
 
 import { brightness } from './helpers/analysis/brightness';
 import { alphaToHex, rgbToHex } from './helpers/converters/hex';
-import { rgbToHsl } from './helpers/converters/hsl';
-import { rgbToHsv } from './helpers/converters/hsv';
+import { hslToString, rgbToHsl } from './helpers/converters/hsl';
+import { hsvToString, rgbToHsv } from './helpers/converters/hsv';
 import { anyToRgba } from './helpers/manipulation/anyToRgba';
 import { darken } from './helpers/manipulation/darken';
 import { desaturate } from './helpers/manipulation/desaturate';
@@ -29,6 +30,7 @@ import { rgbToGray } from './helpers/converters/gray';
 import { brighten } from './helpers/manipulation/brighten';
 import { temperature } from './helpers/manipulation/temperature';
 import { complement } from './helpers/manipulation/complement';
+import { rgbToString } from './helpers/converters/rgb';
 
 export class Colorblender {
   readonly _internalValid: boolean;
@@ -96,6 +98,20 @@ export class Colorblender {
   }
 
   /**
+   * @param format The format to use.
+   * @returns the color in the RGB format as a string.
+   */
+  public rgbString = (format: ToStringFormat = 'default') => {
+    return rgbToString(
+      {
+        ...this._internalRgb,
+        a: this._internalAlpha,
+      },
+      format,
+    );
+  };
+
+  /**
    * @returns The color in the base 10 format.
    */
   public rgbNumber(): number {
@@ -112,11 +128,36 @@ export class Colorblender {
   }
 
   /**
+   * @param format The format to use.
+   * @returns the color in the HSL format as a string.
+   */
+  public hslString = (format: ToStringFormat = 'default') => {
+    return hslToString(
+      {
+        ...this._internalRgb,
+        a: this._internalAlpha,
+      },
+      format,
+    );
+  };
+
+  /**
    * @returns the color in the HSV format.
    */
   public hsv(raw = false): HsvaColor {
     return this._getColorFormat(rgbToHsv, raw) as HsvaColor;
   }
+
+  /**
+   * @param format The format to use.
+   * @returns the color in the HSV format as a string.
+   */
+  public hsvString = () => {
+    return hsvToString({
+      ...this._internalRgb,
+      a: this._internalAlpha,
+    });
+  };
 
   /**
    * @returns the color in the Gray format.
@@ -180,7 +221,7 @@ export class Colorblender {
         ...this._internalRgb,
         a: value,
       });
-    return this._internalAlpha;
+    return round(this._internalAlpha, 2);
   }
 
   /**

@@ -41,4 +41,12 @@ describe('hwb extension', () => {
       a: 1,
     });
   });
+
+  it('should return hwb string color format css', () => {
+    expect(color1.hwbString('css')).toStrictEqual('hwb(11 5% 35%)');
+  });
+
+  it('should return hwb string color format default', () => {
+    expect(color1.hwbString()).toStrictEqual('11°, 5%, 35%');
+  });
 });

@@ -1,12 +1,13 @@
 import type { Extensions } from '../extend';
-import type { LabaColor } from '../types';
+import type { LabaColor, ToStringFormat } from '../types';
 
-import { labToRgb, rgbToLab } from '../helpers/converters/lab';
+import { labToRgb, labToString, rgbToLab } from '../helpers/converters/lab';
 import { roundColor } from '../helpers/utils';
 
 declare module '../colorblender' {
   interface Colorblender {
     lab(raw?: boolean): LabaColor;
+    labString(format?: ToStringFormat): string;
   }
 }
 
@@ -22,6 +23,22 @@ const labExtension: Extensions = (Class, converters): void => {
         : roundColor(rgbToLab(this._internalRgb))),
       alpha: raw ? this._internalAlpha : this.alpha(),
     };
+  };
+
+  /**
+   * @param format The format to use.
+   * @returns the color in the LAB format as a string.
+   */
+  Class.prototype.labString = function (
+    format: ToStringFormat = 'default',
+  ): string {
+    return labToString(
+      {
+        ...this._internalRgb,
+        a: this._internalAlpha,
+      },
+      format,
+    );
   };
 
   converters.push({

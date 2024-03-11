@@ -1,11 +1,12 @@
 import type { Extensions } from '../extend';
-import type { LchaColor } from '../types';
+import type { LchaColor, ToStringFormat } from '../types';
 
-import { lchToRgb, rgbToLch } from '../helpers/converters/lch';
+import { lchToRgb, lchToString, rgbToLch } from '../helpers/converters/lch';
 
 declare module '../colorblender' {
   interface Colorblender {
     lch(raw?: boolean): LchaColor;
+    lchString(format?: ToStringFormat): string;
   }
 }
 
@@ -16,6 +17,22 @@ const lchExtension: Extensions = (Class, converters): void => {
    */
   Class.prototype.lch = function (raw = false): LchaColor {
     return this._getColorFormat(rgbToLch, raw) as LchaColor;
+  };
+
+  /**
+   * @param format The format to use.
+   * @returns the color in the LCH format as a string.
+   */
+  Class.prototype.lchString = function (
+    format: ToStringFormat = 'default',
+  ): string {
+    return lchToString(
+      {
+        ...this._internalRgb,
+        a: this._internalAlpha,
+      },
+      format,
+    );
   };
 
   converters.push({

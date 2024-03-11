@@ -25,4 +25,12 @@ describe('lab extension', () => {
       a: 0.5,
     });
   });
+
+  it('should return lab string color format css', () => {
+    expect(color1.labString('css')).toStrictEqual('lab(37% 50 45)');
+  });
+
+  it('should return lab string color format default', () => {
+    expect(color1.labString()).toStrictEqual('37%, 50, 45');
+  });
 });

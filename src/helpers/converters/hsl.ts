@@ -1,4 +1,9 @@
-import type { HslColor, RgbColor } from '../../types';
+import type {
+  HslColor,
+  RgbColor,
+  RgbaColor,
+  ToStringFormat,
+} from '../../types';
 
 import { roundColor } from '../../helpers/utils';
 
@@ -91,4 +96,18 @@ export const hslToRgb = (hsl: HslColor, rounded?: boolean): RgbColor => {
   const returnedRgb = { r: rgb[0], g: rgb[1], b: rgb[2] };
 
   return rounded ? roundColor(returnedRgb) : returnedRgb;
+};
+
+export const hslToString = (rgba: RgbaColor, format: ToStringFormat) => {
+  const { a, ...rgb } = rgba;
+  const { h, s, l } = rgbToHsl(rgb, true);
+
+  if (format === 'css') {
+    if (a < 1) {
+      return `hsla(${h}, ${s}%, ${l}%, ${a})`;
+    }
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
+  return `${h}°, ${s}%, ${l}%${a < 1 ? `, ${a}` : ''}`;
 };

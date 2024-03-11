@@ -1,4 +1,4 @@
-import type { HcgColor, RgbColor } from '../../types';
+import type { HcgColor, RgbColor, RgbaColor } from '../../types';
 
 import { roundColor } from '../utils';
 
@@ -92,4 +92,11 @@ export const hcgToRgb = (hcg: HcgColor, rounded?: boolean): RgbColor => {
   };
 
   return rounded ? roundColor(rgb) : rgb;
+};
+
+export const hcgToString = (rgba: RgbaColor) => {
+  const { a, ...rgb } = rgba;
+  const { h, c, g } = rgbToHcg(rgb, true);
+
+  return `${h}°, ${c}, ${g}${a < 1 ? `, ${a}` : ''}`;
 };

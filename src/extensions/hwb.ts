@@ -1,14 +1,15 @@
 import type { Extensions } from '../extend';
-import type { HwbaColor } from '../types';
+import type { HwbaColor, ToStringFormat } from '../types';
 import type { Colorblender } from '../colorblender';
 
-import { hwbToRgb, rgbToHwb } from '../helpers/converters/hwb';
+import { hwbToRgb, hwbToString, rgbToHwb } from '../helpers/converters/hwb';
 import { blacken } from '../helpers/manipulation/blacken';
 import { whiten } from '../helpers/manipulation/whiten';
 
 declare module '../colorblender' {
   interface Colorblender {
     hwb(raw?: boolean): HwbaColor;
+    hwbString(format?: ToStringFormat): string;
     whiten(ratio: number): Colorblender;
     blacken(ratio: number): Colorblender;
   }
@@ -21,6 +22,22 @@ const hwbExtension: Extensions = (Class, converters): void => {
    */
   Class.prototype.hwb = function (raw = false): HwbaColor {
     return this._getColorFormat(rgbToHwb, raw) as HwbaColor;
+  };
+
+  /**
+   * @param format The format to use.
+   * @returns the color in the HWB format as a string.
+   */
+  Class.prototype.hwbString = function (
+    format: ToStringFormat = 'default',
+  ): string {
+    return hwbToString(
+      {
+        ...this._internalRgb,
+        a: this._internalAlpha,
+      },
+      format,
+    );
   };
 
   /**

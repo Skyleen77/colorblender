@@ -1,4 +1,4 @@
-import type { RgbColor, XyzColor } from '../../types';
+import type { RgbColor, RgbaColor, XyzColor } from '../../types';
 
 import { roundColor } from '../utils';
 
@@ -43,4 +43,11 @@ export const xyzToRgb = (xyz: XyzColor, rounded?: boolean): RgbColor => {
   const rgb = { r: r * 255, g: g * 255, b: b * 255 };
 
   return rounded ? roundColor(rgb) : rgb;
+};
+
+export const xyzToString = (rgba: RgbaColor) => {
+  const { a, ...rgb } = rgba;
+  const { x, y, z } = rgbToXyz(rgb, true);
+
+  return `${x}, ${y}, ${z}${a < 1 ? `, ${a}` : ''})`;
 };

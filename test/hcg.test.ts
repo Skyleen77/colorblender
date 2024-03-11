@@ -35,4 +35,8 @@ describe('hcg extension', () => {
   it('should shaden the color', () => {
     expect(color1.shaden(0.5).hex()).toStrictEqual('#A12206');
   });
+
+  it('should return cmyk string color format default', () => {
+    expect(color1.hcgString()).toStrictEqual('11°, 60, 13');
+  });
 });

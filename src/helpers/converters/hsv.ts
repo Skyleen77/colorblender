@@ -1,4 +1,4 @@
-import type { HsvColor, RgbColor } from '../../types';
+import type { HsvColor, RgbColor, RgbaColor } from '../../types';
 
 import { roundColor } from '../../helpers/utils';
 
@@ -77,4 +77,11 @@ export const hsvToRgb = (hsv: HsvColor, rounded?: boolean): RgbColor => {
   }
 
   return rounded ? roundColor(rgb) : rgb;
+};
+
+export const hsvToString = (rgba: RgbaColor) => {
+  const { a, ...rgb } = rgba;
+  const { h, s, v } = rgbToHsv(rgb, true);
+
+  return `${h}°, ${s}%, ${v}%${a < 1 ? `, ${a}` : ''}`;
 };

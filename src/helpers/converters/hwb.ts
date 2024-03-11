@@ -1,4 +1,9 @@
-import type { HwbColor, RgbColor } from '../../types';
+import type {
+  HwbColor,
+  RgbColor,
+  RgbaColor,
+  ToStringFormat,
+} from '../../types';
 import { roundColor } from '../utils';
 import { rgbToHsl } from './hsl';
 
@@ -80,4 +85,18 @@ export const hwbToRgb = (hwb: HwbColor, rounded?: boolean): RgbColor => {
   const rgb = { r: r * 255, g: g * 255, b: b * 255 };
 
   return rounded ? roundColor(rgb) : rgb;
+};
+
+export const hwbToString = (rgba: RgbaColor, format: ToStringFormat) => {
+  const { a, ...rgb } = rgba;
+  const { h, w, b } = rgbToHwb(rgb, true);
+
+  if (format === 'css') {
+    if (a < 1) {
+      return `hwb(${h} ${w}% ${b}% / ${a})`;
+    }
+    return `hwb(${h} ${w}% ${b}%)`;
+  }
+
+  return `${h}°, ${w}%, ${b}%${a < 1 ? `, ${a}` : ''}`;
 };

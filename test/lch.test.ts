@@ -23,4 +23,12 @@ describe('lch extension', () => {
       a: 1,
     });
   });
+
+  it('should return lch string color format css', () => {
+    expect(color1.lchString('css')).toStrictEqual('lch(37% 68 42)');
+  });
+
+  it('should return lch string color format default', () => {
+    expect(color1.lchString()).toStrictEqual('37%, 68, 42');
+  });
 });

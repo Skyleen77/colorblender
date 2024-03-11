@@ -61,6 +61,14 @@ describe('colorblender', () => {
     expect(color1.rgb()).toStrictEqual({ r: 167, g: 40, b: 13, a: 1 });
   });
 
+  it('should return rgb string color format css', () => {
+    expect(color1.rgbString('css')).toStrictEqual('rgb(167, 40, 13)');
+  });
+
+  it('should return rgb string color format default', () => {
+    expect(color1.rgbString()).toStrictEqual('167, 40, 13');
+  });
+
   it('should return rgb number', () => {
     expect(color1.rgbNumber()).toBe(10954765);
   });
@@ -69,8 +77,20 @@ describe('colorblender', () => {
     expect(color1.hsl()).toStrictEqual({ h: 11, s: 86, l: 35, a: 1 });
   });
 
+  it('should return hsl string color format css', () => {
+    expect(color1.hslString('css')).toStrictEqual('hsl(11, 86%, 35%)');
+  });
+
+  it('should return hsl string color format default', () => {
+    expect(color1.hslString()).toStrictEqual('11°, 86%, 35%');
+  });
+
   it('should return hsv color', () => {
     expect(color1.hsv()).toStrictEqual({ h: 11, s: 92, v: 65, a: 1 });
+  });
+
+  it('should return hsl string color', () => {
+    expect(color1.hsvString()).toStrictEqual('11°, 92%, 65%');
   });
 
   it('should converts color to Gray correctly', () => {
@@ -87,6 +107,10 @@ describe('colorblender', () => {
 
   it('should set the alpha and return it', () => {
     expect(color1.alpha(0.59).alpha()).toBe(0.59);
+  });
+
+  it('should set the alpha raw and return it rounded', () => {
+    expect(color1.alpha(0.59097289702973692839).alpha()).toBe(0.59);
   });
 
   it('should return the hue', () => {

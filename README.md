@@ -52,8 +52,8 @@ colorblender({ h: 360, s: 100, v: 100, a: 1 });
 // Gray
 colorblender({ gray: 100 });
 // HWB (with extension hwb)
-colorblender({ h: 0, s: 0, i: 1 });
-colorblender({ h: 0, s: 0, i: 1, a: 1 });
+colorblender({ h: 0, w: 100, b: 0 });
+colorblender({ h: 0, w: 100, b: 0, a: 1 });
 // HCG (with extension hcg)
 colorblender({ h: 0, c: 0, g: 100 });
 colorblender({ h: 0, c: 0, g: 100, a: 1 });
@@ -97,6 +97,15 @@ colorblender({ r: 255, g: 255, b: 255, a: 0.5 }).hex(); // #FFFFFF80
 
 </details>
 
+<details><summary><b><code>.rgb(raw = false)</code></b></summary><br>
+
+```typescript
+colorblender('#FFF').rgb(); // { r: 255, g: 255, b: 255, a: 1 }
+colorblender('#FFFFFF80').rgb(); // { r: 255, g: 255, b: 255, a: 0.5 }
+```
+
+</details>
+
 <details>
 <summary><b><code>.rgbNumber()</code></b></summary><br>
 
@@ -107,11 +116,13 @@ colorblender('#FFF').rgbNumber(); // 16777215
 </details>
 
 <details>
-<summary><b><code>.rgb(raw = false)</code></b></summary><br>
+<summary><b><code>.rgbString(format: 'css' | 'default')</code></b></summary><br>
 
 ```typescript
-colorblender('#FFF').rgb(); // { r: 255, g: 255, b: 255, a: 1 }
-colorblender('#FFFFFF80').rgb(); // { r: 255, g: 255, b: 255, a: 0.5 }
+colorblender('#FFF').rgbString(); // 255, 255, 255
+colorblender('#FFFFFF80').rgbString(); // 255, 255, 255, 0.5
+colorblender('#FFF').rgbString('css'); // rgb(255, 255, 255)
+colorblender('#FFFFFF80').rgbString('css'); // rgba(255, 255, 255, 0.5)
 ```
 
 </details>
@@ -128,12 +139,34 @@ colorblender({ r: 167, g: 40, b: 13 }).hsv(true); // { h: 10.51948051948052, s: 
 </details>
 
 <details>
+<summary><b><code>.hslString(format: 'css' | 'default')</code></b></summary><br>
+
+```typescript
+colorblender('#FFF').hslString(); // 0°, 0%, 100%
+colorblender('#FFFFFF80').hslString(); // 0°, 0%, 100%, 0.5
+colorblender('#FFF').hslString('css'); // hsl(0, 0%, 100%)
+colorblender('#FFFFFF80').hslString('css'); // hsla(0, 0%, 100%, 0.5)
+```
+
+</details>
+
+<details>
 <summary><b><code>.hsv(raw = false)</code></b></summary><br>
 
 ```typescript
 colorblender('#FFF').hsv(); // { h: 0, s: 0, v: 100, a: 1 }
 colorblender('#FFFFFF80').hsv(); // { h: 0, s: 0, v: 100, a: 0.5 }
 colorblender({ r: 167, g: 40, b: 13 }).hsv(true); // { h: 10.519480519480492, s: 92.21556886227545, v: 65.49019607843137, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.hsvString()</code></b></summary><br>
+
+```typescript
+colorblender('#FFF').hslString(); // 0°, 0%, 100%
+colorblender('#FFFFFF80').hslString(); // 0°, 0%, 100%, 0.5
 ```
 
 </details>
@@ -159,12 +192,34 @@ colorblender({ r: 167, g: 40, b: 13 }).hwb(true); // { h: 10.51948051948052, w: 
 </details>
 
 <details>
+<summary><b><code>.hwbString(format: 'css' | 'default')</code></b> extension <b>hwb</b></summary><br>
+
+```typescript
+colorblender('#FFF').hwbString(); // 0°, 100%, 0%
+colorblender('#FFFFFF80').hwbString(); // 0°, 100%, 0%, 0.5
+colorblender('#FFF').hwbString('css'); // hwb(0 100% 0%)
+colorblender('#FFFFFF80').hwbString('css'); // hwb(0 100% 0% / 0.5)
+```
+
+</details>
+
+<details>
 <summary><b><code>.hcg(raw = false)</code></b> extension <b>hcg</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).hcg(); // { h: 11, c: 60, g: 13, a: 1 }
 colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).hcg(); // { h: 11, c: 60, g: 13, a: 0.5 }
 colorblender({ r: 167, g: 40, b: 13 }).hcg(true); // { h: 10.519480519480519, c: 60.3921568627451, g: 12.871287128712869, , a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.hcgString()</code></b> extension <b>hcg</b></summary><br>
+
+```typescript
+colorblender('#FFF').hcgString(); // 0°, 0%, 0%
+colorblender('#FFFFFF80').hcgString(); // 0°, 0%, 0%, 0.5
 ```
 
 </details>
@@ -181,12 +236,34 @@ colorblender({ r: 167, g: 40, b: 13 }).cmyk(true); // { c: 0, m: 76.047904191616
 </details>
 
 <details>
+<summary><b><code>.cmykString(format: 'css' | 'default')</code></b> extension <b>cmyk</b></summary><br>
+
+```typescript
+colorblender('#FFF').cmykString(); // 0%, 0%, 0%, 0%
+colorblender('#FFFFFF80').cmykString(); // 0%, 0%, 0%, 0%, 0.5
+colorblender('#FFF').cmykString('css'); // device-cmyk(0% 0% 0% 0%)
+colorblender('#FFFFFF80').cmykString('css'); // device-cmyk(0% 0% 0% 0% / 0.5)
+```
+
+</details>
+
+<details>
 <summary><b><code>.xyz(raw = false)</code></b> extension <b>xyz</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).xyz(); // { x: 17, y: 10, z: 1, a: 1 }
 colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).xyz(); // { x: 17, y: 10, z: 1, a: 0.5 }
 colorblender({ r: 167, g: 40, b: 13 }).xyz(true); // { x: 16.769891396698043, y: 9.764837423188144, z: 1.382502939864886, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.xyzString()</code></b> extension <b>xyz</b></summary><br>
+
+```typescript
+colorblender('#FFF').xyzString(); // 95, 100, 108.9
+colorblender('#FFFFFF80').xyzString(); // 95, 100, 108.9, 0.5
 ```
 
 </details>
@@ -203,12 +280,36 @@ colorblender({ r: 167, g: 40, b: 13 }).lab(true); // { l: 37.41702066350787, a: 
 </details>
 
 <details>
+<summary><b><code>.labString(format: 'css' | 'default')</code></b> extension <b>lab</b></summary><br>
+
+```typescript
+colorblender('#FFF').labString(); // 100%, 0, 0
+colorblender('#FFFFFF80').labString(); // 100%, 0, 0, 0.5
+colorblender('#FFF').labString('css'); // lab(100% 0 0)
+colorblender('#FFFFFF80').labString('css'); // lab(100% 0 0 / 0.5)
+```
+
+</details>
+
+<details>
 <summary><b><code>.lch(raw = false)</code></b> extension <b>lch</b></summary><br>
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).lch(); // { l: 37, c: 68, h: 42, a: 1 }
 colorblender({ r: 167, g: 40, b: 13, a: 0.5 }).lch(); // { l: 37, c: 68, h: 42, a: 0.5 }
 colorblender({ r: 167, g: 40, b: 13 }).lch(true); // { l: 37.41702066350787, c: 67.70402453131862, h: 42.156026720919115, a: 1 }
+```
+
+</details>
+
+<details>
+<summary><b><code>.lchString(format: 'css' | 'default')</code></b> extension <b>lch</b></summary><br>
+
+```typescript
+colorblender('#FFF').lchString(); // 100%, 0, 0
+colorblender('#FFFFFF80').lchString(); // 100%, 0, 0, 0.5
+colorblender('#FFF').lchString('css'); // lch(100% 0 0)
+colorblender('#FFFFFF80').lchString('css'); // lch(100% 0 0 / 0.5)
 ```
 
 </details>

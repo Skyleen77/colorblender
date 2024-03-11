@@ -132,3 +132,5 @@ export interface Converter {
   format: string[] | 'NAME' | 'KEYWORD' | 'RAL' | 'HKS';
   converter: (color: Omit<AnyColor, string>) => RgbColor;
 }
+
+export type ToStringFormat = 'default' | 'css';

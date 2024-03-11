@@ -1,4 +1,9 @@
-import type { CmykColor, RgbColor } from '../../types';
+import type {
+  CmykColor,
+  RgbColor,
+  RgbaColor,
+  ToStringFormat,
+} from '../../types';
 
 import { roundColor } from '../utils';
 
@@ -30,4 +35,18 @@ export const cmykToRgb = (cmyk: CmykColor, rounded?: boolean): RgbColor => {
   const rgb = { r: r * 255, g: g * 255, b: b * 255 };
 
   return rounded ? roundColor(rgb) : rgb;
+};
+
+export const cmykToString = (rgba: RgbaColor, format: ToStringFormat) => {
+  const { a, ...rgb } = rgba;
+  const { c, m, y, k } = rgbToCmyk(rgb, true);
+
+  if (format === 'css') {
+    if (a < 1) {
+      return `device-cmyk(${c}% ${m}% ${y}% ${k}% / ${a})`;
+    }
+    return `device-cmyk(${c}% ${m}% ${y}% ${k}%)`;
+  }
+
+  return `${c}%, ${m}%, ${y}%, ${k}%${a < 1 ? `, ${a}` : ''}`;
 };

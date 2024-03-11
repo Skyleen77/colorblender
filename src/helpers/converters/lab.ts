@@ -1,4 +1,9 @@
-import type { LabColor, RgbColor } from '../../types';
+import type {
+  LabColor,
+  RgbColor,
+  RgbaColor,
+  ToStringFormat,
+} from '../../types';
 
 import { rgbToXyz, xyzToRgb } from './xyz';
 import { roundColor } from '../utils';
@@ -57,4 +62,18 @@ export const labToRgb = (lab: LabColor, rounded?: boolean): RgbColor => {
   const rgb = xyzToRgb(xyz);
 
   return rounded ? roundColor(rgb) : rgb;
+};
+
+export const labToString = (rgba: RgbaColor, format: ToStringFormat) => {
+  const { a: alpha, ...rgb } = rgba;
+  const { l, a, b } = rgbToLab(rgb, true);
+
+  if (format === 'css') {
+    if (a < 1) {
+      return `lab(${l}% ${a} ${b} / ${a})`;
+    }
+    return `lab(${l}% ${a} ${b})`;
+  }
+
+  return `${l}%, ${a}, ${b}${a < 1 ? `, ${a}` : ''}`;
 };

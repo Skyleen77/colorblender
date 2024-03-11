@@ -24,4 +24,14 @@ describe('cmyk extension', () => {
       a: 1,
     });
   });
+
+  it('should return cmyk string color format css', () => {
+    expect(color1.cmykString('css')).toStrictEqual(
+      'device-cmyk(0% 76% 92% 35%)',
+    );
+  });
+
+  it('should return cmyk string color format default', () => {
+    expect(color1.cmykString()).toStrictEqual('0%, 76%, 92%, 35%');
+  });
 });

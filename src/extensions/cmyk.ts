@@ -1,11 +1,12 @@
 import type { Extensions } from '../extend';
-import type { CmykaColor } from '../types';
+import type { CmykaColor, ToStringFormat } from '../types';
 
-import { cmykToRgb, rgbToCmyk } from '../helpers/converters/cmyk';
+import { cmykToRgb, cmykToString, rgbToCmyk } from '../helpers/converters/cmyk';
 
 declare module '../colorblender' {
   interface Colorblender {
     cmyk(raw?: boolean): CmykaColor;
+    cmykString(format?: ToStringFormat): string;
   }
 }
 
@@ -16,6 +17,22 @@ const cmykExtension: Extensions = (Class, converters): void => {
    */
   Class.prototype.cmyk = function (raw = false): CmykaColor {
     return this._getColorFormat(rgbToCmyk, raw) as CmykaColor;
+  };
+
+  /**
+   * @param format The format to use.
+   * @returns the color in the HWB format as a string.
+   */
+  Class.prototype.cmykString = function (
+    format: ToStringFormat = 'default',
+  ): string {
+    return cmykToString(
+      {
+        ...this._internalRgb,
+        a: this._internalAlpha,
+      },
+      format,
+    );
   };
 
   converters.push({
