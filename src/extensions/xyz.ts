@@ -26,7 +26,7 @@ const xyzExtension: Extensions = (Class, converters): void => {
   Class.prototype.xyzString = function (): string {
     return xyzToString({
       ...this._internalRgb,
-      a: this._internalAlpha,
+      a: this.alpha(),
     });
   };
 

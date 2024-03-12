@@ -34,7 +34,7 @@ const hwbExtension: Extensions = (Class, converters): void => {
     return hwbToString(
       {
         ...this._internalRgb,
-        a: this._internalAlpha,
+        a: this.alpha(),
       },
       format,
     );

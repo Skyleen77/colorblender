@@ -63,7 +63,7 @@ export class Colorblender {
   ): RgbaColor | HslaColor | HwbaColor | HcgaColor {
     return {
       ...color,
-      a: this._internalAlpha,
+      a: this.alpha(),
     };
   }
 
@@ -105,7 +105,7 @@ export class Colorblender {
     return rgbToString(
       {
         ...this._internalRgb,
-        a: this._internalAlpha,
+        a: this.alpha(),
       },
       format,
     );
@@ -135,7 +135,7 @@ export class Colorblender {
     return hslToString(
       {
         ...this._internalRgb,
-        a: this._internalAlpha,
+        a: this.alpha(),
       },
       format,
     );
@@ -155,7 +155,7 @@ export class Colorblender {
   public hsvString = () => {
     return hsvToString({
       ...this._internalRgb,
-      a: this._internalAlpha,
+      a: this.alpha(),
     });
   };
 

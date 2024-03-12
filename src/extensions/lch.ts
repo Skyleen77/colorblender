@@ -29,7 +29,7 @@ const lchExtension: Extensions = (Class, converters): void => {
     return lchToString(
       {
         ...this._internalRgb,
-        a: this._internalAlpha,
+        a: this.alpha(),
       },
       format,
     );

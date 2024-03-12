@@ -35,7 +35,7 @@ const labExtension: Extensions = (Class, converters): void => {
     return labToString(
       {
         ...this._internalRgb,
-        a: this._internalAlpha,
+        a: this.alpha(),
       },
       format,
     );

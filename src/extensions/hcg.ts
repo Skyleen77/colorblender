@@ -33,7 +33,7 @@ const hcgExtension: Extensions = (Class, converters): void => {
   Class.prototype.hcgString = function (): string {
     return hcgToString({
       ...this._internalRgb,
-      a: this._internalAlpha,
+      a: this.alpha(),
     });
   };
 

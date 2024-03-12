@@ -29,7 +29,7 @@ const cmykExtension: Extensions = (Class, converters): void => {
     return cmykToString(
       {
         ...this._internalRgb,
-        a: this._internalAlpha,
+        a: this.alpha(),
       },
       format,
     );
