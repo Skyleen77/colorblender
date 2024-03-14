@@ -1,6 +1,6 @@
 {
   "name": "colorblender",
-  "version": "2.7.1",
+  "version": "2.7.4",
   "description": "A powerful and fully typed color library.",
   "repository": {
     "type": "git",
@@ -20,6 +20,42 @@
       "import": "./index.mjs",
       "require": "./index.js",
       "default": "./index.mjs"
+    },
+    "./list/copic": {
+      "types": "./list/copic.d.ts",
+      "import": "./list/copic.mjs",
+      "require": "./list/copic.js",
+      "default": "./list/copic.mjs"
+    },
+    "./list/hks": {
+      "types": "./list/hks.d.ts",
+      "import": "./list/hks.mjs",
+      "require": "./list/hks.js",
+      "default": "./list/hks.mjs"
+    },
+    "./list/keywords": {
+      "types": "./list/keywords.d.ts",
+      "import": "./list/keywords.mjs",
+      "require": "./list/keywords.js",
+      "default": "./list/keywords.mjs"
+    },
+    "./list/names": {
+      "types": "./list/names.d.ts",
+      "import": "./list/names.mjs",
+      "require": "./list/names.js",
+      "default": "./list/names.mjs"
+    },
+    "./list/prismacolor": {
+      "types": "./list/prismacolor.d.ts",
+      "import": "./list/prismacolor.mjs",
+      "require": "./list/prismacolor.js",
+      "default": "./list/prismacolor.mjs"
+    },
+    "./list/ral": {
+      "types": "./list/ral.d.ts",
+      "import": "./list/ral.mjs",
+      "require": "./list/ral.js",
+      "default": "./list/ral.mjs"
     },
     "./extensions/a11y": {
       "types": "./extensions/a11y.d.ts",
@@ -127,7 +163,8 @@
   },
   "files": [
     "*.{js,mjs,ts,map}",
-    "extensions/*.{js,mjs,ts,map}"
+    "extensions/*.{js,mjs,ts,map}",
+    "list/*.{js,mjs,ts,map}"
   ],
   "husky": {
     "hooks": {
@@ -135,8 +172,8 @@
     }
   },
   "scripts": {
-    "build": "rm -rf ./dist/* && rollup -c --bundleConfigAsCjs",
-    "start": "rollup -c -w --bundleConfigAsCjs",
+    "build": "rm -rf ./dist/* && node --max-old-space-size=8192 node_modules/.bin/rollup -c --bundleConfigAsCjs",
+    "start": "node --max-old-space-size=8192 node_modules/.bin/rollup -c -w --bundleConfigAsCjs",
     "index": "tsx ./src/colorblender.ts",
     "test": "jest",
     "test:watch": "jest --watchAll",

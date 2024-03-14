@@ -1,8 +1,8 @@
 import type { Extensions } from '../extend';
-import type { HksColor } from '../constants/hks';
+import type { HksColor } from '../list/hks';
 
 import { listToRgb, rgbToList } from '../helpers/converters/list';
-import { hks } from '../constants/hks';
+import { hks } from '../list/hks';
 
 declare module '../colorblender' {
   interface Colorblender {

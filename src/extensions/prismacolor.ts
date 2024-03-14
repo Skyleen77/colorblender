@@ -1,8 +1,8 @@
 import type { Extensions } from '../extend';
-import type { PrismaColor } from '../constants/prismacolor';
+import type { PrismaColor } from '../list/prismacolor';
 
 import { listToRgb, rgbToList } from '../helpers/converters/list';
-import { prismacolor } from '../constants/prismacolor';
+import { prismacolor } from '../list/prismacolor';
 
 declare module '../colorblender' {
   interface Colorblender {

@@ -1,8 +1,8 @@
 import type { Extensions } from '../extend';
-import type { CopicColor } from '../constants/copic';
+import type { CopicColor } from '../list/copic';
 
 import { listToRgb, rgbToList } from '../helpers/converters/list';
-import { copic } from '../constants/copic';
+import { copic } from '../list/copic';
 
 declare module '../colorblender' {
   interface Colorblender {

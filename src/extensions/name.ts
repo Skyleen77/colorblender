@@ -1,7 +1,7 @@
 import type { Extensions } from '../extend';
-import type { NameColor } from '../constants/names';
+import type { NameColor } from '../list/names';
 
-import { names } from '../constants/names';
+import { names } from '../list/names';
 import { listToRgb, rgbToList } from '../helpers/converters/list';
 
 declare module '../colorblender' {

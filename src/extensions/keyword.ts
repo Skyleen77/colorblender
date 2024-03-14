@@ -1,7 +1,7 @@
 import type { Extensions } from '../extend';
-import type { KeywordColor } from '../constants/keywords';
+import type { KeywordColor } from '../list/keywords';
 
-import { keywords } from '../constants/keywords';
+import { keywords } from '../list/keywords';
 import { listToRgb, rgbToList } from '../helpers/converters/list';
 
 declare module '../colorblender' {

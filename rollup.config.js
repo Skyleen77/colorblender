@@ -19,6 +19,7 @@ const plugins = (compilerOptions) => {
 };
 
 const extensionsPaths = glob.sync('./src/extensions/*.ts');
+const listPaths = glob.sync('./src/list/*.ts');
 
 export default [
   {
@@ -37,6 +38,24 @@ export default [
     },
     plugins: plugins({ declaration: false }),
   },
+
+  ...listPaths.map((input) => ({
+    input,
+    output: {
+      file: `dist/list/${path.parse(input).name}.mjs`,
+      format: 'es',
+    },
+    plugins: plugins({ declaration: false }),
+  })),
+
+  ...listPaths.map((input) => ({
+    input,
+    output: {
+      file: `dist/list/${path.parse(input).name}.js`,
+      format: 'cjs',
+    },
+    plugins: plugins({ declaration: false }),
+  })),
 
   ...extensionsPaths.map((input) => ({
     input,

@@ -1,8 +1,8 @@
 import type { Extensions } from '../extend';
-import type { RalColor } from '../constants/ral';
+import type { RalColor } from '../list/ral';
 
 import { listToRgb, rgbToList } from '../helpers/converters/list';
-import { ral } from '../constants/ral';
+import { ral } from '../list/ral';
 
 declare module '../colorblender' {
   interface Colorblender {
