@@ -77,6 +77,10 @@ colorblender({ ansi256: 231 });
 colorblender('9010');
 // HKS (with extension hks)
 colorblender('81-K');
+// Copic (with extension copic)
+colorblender('Colorless Blender 0');
+// PrismaColor (with extension prismacolor)
+colorblender('White PC 938');
 // Name (with extension name)
 colorblender('White');
 // Keyword (with extension keyword)
@@ -355,6 +359,24 @@ colorblender({ r: 167, g: 40, b: 13 }).ral(); // "3013"
 
 ```typescript
 colorblender({ r: 167, g: 40, b: 13 }).hks(); // "82-K"
+```
+
+</details>
+
+<details>
+<summary><b><code>.copic()</code></b> extension <b>copic</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).copic(); // "Burnt Umber E29"
+```
+
+</details>
+
+<details>
+<summary><b><code>.prismacolor()</code></b> extension <b>prismacolor</b></summary><br>
+
+```typescript
+colorblender({ r: 167, g: 40, b: 13 }).prismacolor(); // "Terra Cotta PC 944"
 ```
 
 </details>
@@ -808,6 +830,8 @@ extend([hwbExtension, mixExtension]);
 - **apple** - APPLE color models _0.4kb_
 - **ral** - RAL color models _4.13kb_
 - **hks** - HKS color models _6.12kb_
+- **copic** - Copic color models _10.7kb_
+- **prismacolor** - PrismaColor color models _5.67kb_
 
 ## Issues
 

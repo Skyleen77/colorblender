@@ -34,7 +34,7 @@ const convertToRgba = (
 
 export const anyToRgba = (color: AnyColor): RgbaColor | null => {
   if (typeof color === 'string') {
-    const formats = ['NAME', 'KEYWORD', 'RAL', 'HKS'];
+    const formats = ['NAME', 'KEYWORD', 'RAL', 'HKS', 'COPIC', 'PRISMACOLOR'];
 
     for (const format of formats) {
       const rgb = convertColorByFormat(color, format);

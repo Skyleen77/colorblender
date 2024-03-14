@@ -129,7 +129,14 @@ export type ColorWithAlpha =
 export type AnyColor = HexColor | ColorWithoutAlpha | ColorWithAlpha;
 
 export interface Converter {
-  format: string[] | 'NAME' | 'KEYWORD' | 'RAL' | 'HKS';
+  format:
+    | string[]
+    | 'NAME'
+    | 'KEYWORD'
+    | 'RAL'
+    | 'HKS'
+    | 'COPIC'
+    | 'PRISMACOLOR';
   converter: (color: Omit<AnyColor, string>) => RgbColor;
 }
 

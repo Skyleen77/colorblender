@@ -1,6 +1,6 @@
 {
   "name": "colorblender",
-  "version": "2.6.1",
+  "version": "2.7.1",
   "description": "A powerful and fully typed color library.",
   "repository": {
     "type": "git",
@@ -38,6 +38,12 @@
       "import": "./extensions/apple.mjs",
       "require": "./extensions/apple.js",
       "default": "./extensions/apple.mjs"
+    },
+    "./extensions/copic": {
+      "types": "./extensions/copic.d.ts",
+      "import": "./extensions/copic.mjs",
+      "require": "./extensions/copic.js",
+      "default": "./extensions/copic.mjs"
     },
     "./extensions/cmyk": {
       "types": "./extensions/cmyk.d.ts",
@@ -98,6 +104,12 @@
       "import": "./extensions/mix.mjs",
       "require": "./extensions/mix.js",
       "default": "./extensions/mix.mjs"
+    },
+    "./extensions/prismacolor": {
+      "types": "./extensions/prismacolor.d.ts",
+      "import": "./extensions/prismacolor.mjs",
+      "require": "./extensions/prismacolor.js",
+      "default": "./extensions/prismacolor.mjs"
     },
     "./extensions/ral": {
       "types": "./extensions/ral.d.ts",
