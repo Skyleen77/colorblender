@@ -49,5 +49,5 @@ export const xyzToString = (rgba: RgbaColor) => {
   const { a, ...rgb } = rgba;
   const { x, y, z } = rgbToXyz(rgb, true);
 
-  return `${x}, ${y}, ${z}${a < 1 ? `, ${a}` : ''})`;
+  return `${x}, ${y}, ${z}${a < 1 ? `, ${a}` : ''}`;
 };
